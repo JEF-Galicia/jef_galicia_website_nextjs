@@ -41,36 +41,26 @@ export default function PostPage({ post, globalData }: { post: Post; globalData:
                 <h1 className="text-3xl lg:text-5xl text-center mb-12">
                     {globalData.blogTitle}
                 </h1>
-                <ul className="w-full">
-                    <li
-                        key={post.id}
-                        className="md:first:rounded-t-lg md:last:rounded-b-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b hover:border-b hovered-sibling:border-t-0"
-                    >
-                        <Link
-                            as={`/posts/${post.id.replace(/\.mdx?$/, '')}`}
-                            href={`/posts/[slug]`}
-                        >
-                            <a className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
-                                {post.date && (
-                                    <p className="uppercase mb-3 font-bold opacity-60">
-                                        {new Date(post.date).toLocaleDateString('es-ES')}
-                                    </p>
-                                )}
-                                <h2 className="text-2xl md:text-3xl">{post.title}</h2>
-                                {post.description && (
-                                    <p className="mt-3 text-lg opacity-60">
-                                        {post.description}
-                                    </p>
-                                )}
-                                {post.body && (
-                                    <p className="mt-3 text-lg opacity-60">
-                                        {post.body}
-                                    </p>
-                                )}
-                            </a>
-                        </Link>
-                    </li>
-                </ul>
+                <div className="w-full md:rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b">
+                    <div className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
+                        {post.date && (
+                            <p className="uppercase mb-3 font-bold opacity-60">
+                                {new Date(post.date).toLocaleDateString('es-ES')}
+                            </p>
+                        )}
+                        <h2 className="text-2xl md:text-3xl">{post.title}</h2>
+                        {post.description && (
+                            <p className="mt-3 text-lg opacity-60">
+                                {post.description}
+                            </p>
+                        )}
+                        {post.body && (
+                            <p className="mt-3 text-lg opacity-60">
+                                {post.body}
+                            </p>
+                        )}
+                    </div>
+                </div>
             </main>
             <Footer copyrightText={globalData.footerText} />
             <GradientBackground
