@@ -6,47 +6,41 @@ import Layout, { GradientBackground } from '../../components/Layout';
 import { getGlobalData } from '../../utils/global-data';
 import SEO from '../../components/SEO';
 
-import { parseProperties, Post } from '../../api/parse-properties';
+import { parsePost, parseProperties, Post } from '../../api/parse-properties';
 import { queryDatabase, queryPost } from '../../api/query-database';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-
-type PostProps = {
-    globalData: any;
-};
+import { post } from 'cypress/types/jquery';
 
 export async function getStaticPaths() {
     return {
         paths: [], //indicates that no page needs be created at build time
-        fallback: true,
+        fallback: 'blocking',
     };
 }
 
-export async function getStaticProps(context: any) {
-    const database = await queryPost(context.params.id);
-    const post = parseProperties(database)[0];
+export async function getStaticProps(context) {
+    const page = await queryPost(context.params.id);
+    const post = parsePost(page);
     const globalData = getGlobalData();
-    return { props: { globalData } };
+    return { props: { post, globalData } };
 }
 
-export default async function PostPage({ globalData }: PostProps) {
-    const [post, setPost] = useState(null)
-    const [isLoading, setLoading] = useState(true)
+export default function PostPage({ post, globalData }: { post: Post; globalData: any }) {
+    const router = useRouter();
 
-    useEffect(() => {
-        queryPost('Bienvenida').then((database) => {
-            const post = parseProperties(database)[0];
-            setPost(post);
-            setLoading(false);
-        });
-    }, [])
-
-    if (isLoading) return <p>Cargando...</p>
-    if (!post) return <p>Non se atopou o artigo.</p>
+    if (router.isFallback) {
+        return <h1>Loading...</h1>
+    }
 
     return (
         <Layout>
+            <SEO title={globalData.name} description={globalData.blogTitle} />
+            <Header name={globalData.name} />
             <main className="w-full">
+                <h1 className="text-3xl lg:text-5xl text-center mb-12">
+                    {globalData.blogTitle}
+                </h1>
                 <ul className="w-full">
                     <li
                         key={post.id}
@@ -68,11 +62,17 @@ export default async function PostPage({ globalData }: PostProps) {
                                         {post.description}
                                     </p>
                                 )}
+                                {post.body && (
+                                    <p className="mt-3 text-lg opacity-60">
+                                        {post.body}
+                                    </p>
+                                )}
                             </a>
                         </Link>
                     </li>
                 </ul>
             </main>
+            <Footer copyrightText={globalData.footerText} />
             <GradientBackground
                 variant="large"
                 className="fixed top-20 opacity-40 dark:opacity-60"
@@ -82,5 +82,5 @@ export default async function PostPage({ globalData }: PostProps) {
                 className="absolute bottom-0 opacity-20 dark:opacity-10"
             />
         </Layout>
-    );
+    )
 }

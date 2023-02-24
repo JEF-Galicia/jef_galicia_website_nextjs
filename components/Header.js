@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import logoJef from '../static/Main_Isotype.svg';
+import logoJef from '../public/Main_Isotype.svg';
 
 export default function Header({ name }) {
   return (

@@ -5,14 +5,8 @@ export const queryDatabase = async () =>
     database_id: process.env.NOTION_DATABASE_ID ?? '',
   });
 
-export const queryPost = async (title: string) =>
-  await notion.databases.query({
+export const queryPost = async (url: string) =>
+  await notion.pages.retrieve({
     // Get the post by its URL
-    database_id: process.env.NOTION_DATABASE_ID ?? '',
-    filter: {
-      property: 'Título',
-      title: {
-        equals: title,
-      }
-    },
+    page_id: url
   });
