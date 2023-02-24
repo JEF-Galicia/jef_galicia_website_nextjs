@@ -7,10 +7,11 @@ import { getGlobalData } from '../../utils/global-data';
 import SEO from '../../components/SEO';
 
 import { parsePost, parseProperties, Post } from '../../api/parse-properties';
-import { queryDatabase, queryPost } from '../../api/query-database';
+import { queryDatabase, queryPost, retrieveBlockChildren } from '../../api/query-database';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { post } from 'cypress/types/jquery';
+import { Render } from '@9gustin/react-notion-render';
 
 export async function getStaticPaths() {
     return {
@@ -21,12 +22,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
     const page = await queryPost(context.params.id);
+    const blockChildren = await retrieveBlockChildren(context.params.id);
     const post = parsePost(page);
     const globalData = getGlobalData();
-    return { props: { post, globalData } };
+    return { props: { post, blockChildren, globalData } };
 }
 
-export default function PostPage({ post, globalData }: { post: Post; globalData: any }) {
+export default function PostPage({ post, blockChildren, globalData }: { post: Post; blockChildren: any; globalData: any }) {
     const router = useRouter();
 
     if (router.isFallback) {
@@ -54,11 +56,7 @@ export default function PostPage({ post, globalData }: { post: Post; globalData:
                                 {post.description}
                             </p>
                         )}
-                        {post.body && (
-                            <p className="mt-3 text-lg opacity-60">
-                                {post.body}
-                            </p>
-                        )}
+                        <Render blocks={blockChildren['results']} useStyles classNames/>
                     </div>
                 </div>
             </main>
