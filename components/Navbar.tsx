@@ -8,7 +8,7 @@ import { GlobalContext } from "../utils/context";
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
-    const [globalContext, setGC] = useContext(GlobalContext);
+    const {globalContext} = useContext(GlobalContext);
 
     return (
         <nav className="flex items-center justify-between flex-wrap p-6 backdrop-blur bg-white dark:bg-black bg-opacity-10 dark:bg-opacity-30 transition border-b border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50">

@@ -4,8 +4,8 @@ import logoJef from '../public/Main_Isotype.svg';
 import { useContext } from 'react';
 import { GlobalContext } from '../utils/context';
 
-export default function Header({ name }) {
-    const [globalContext, setGC] = useContext(GlobalContext);
+export default function Header() {
+    const {globalContext} = useContext(GlobalContext);
 
     return (
         <header className="pb-12">

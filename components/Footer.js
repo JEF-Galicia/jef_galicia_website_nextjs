@@ -82,7 +82,7 @@ const ThemeSwitcher = () => {
 };
 
 export default function Footer() {
-  const [globalContext] = useContext(GlobalContext);
+  const {globalContext} = useContext(GlobalContext);
   return (
     <footer className="py-16 flex flex-col items-center mx-6">
       <div className="flex">

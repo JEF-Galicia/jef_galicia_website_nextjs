@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }) {
   const [context, setContext] = useState({ name: 'JEF Galicia', footerText: '© 2023. Todos os dereitos reservados.' });
   return (
     <span className="theme-jef_galicia" style={{ minHeight: '100vh' }}>
-      <GlobalContext.Provider value={[context, useContext]}>
+      <GlobalContext.Provider value={{globalContext: context, setContext}}>
         <Navbar></Navbar>
         <Layout>
           <div className='mt-24 lg:mt-36'>
