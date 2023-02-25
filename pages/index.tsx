@@ -20,7 +20,6 @@ type IndexProps = {
 export async function getStaticProps() {
   const database = await queryDatabase();
   const posts = parseProperties(database);
-  console.log(posts);
 
   //const posts = getPosts();
   const globalData = getGlobalData();
@@ -30,7 +29,7 @@ export async function getStaticProps() {
 
 export default function Index({ posts, globalData }: IndexProps) {
   return (
-    <Layout>
+    <>
       <SEO title={globalData.name} description={globalData.blogTitle} />
       <Header name={globalData.name} />
       <main className="w-full">
@@ -46,36 +45,25 @@ export default function Index({ posts, globalData }: IndexProps) {
               <Link
                 as={`/blog/${post.id}`}
                 href={`/blog/[id]`}
-              >
-                <a className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
-                  {post.date && (
-                    <p className="uppercase mb-3 font-bold opacity-60">
-                      {new Date(post.date).toLocaleDateString('es-ES')}
-                    </p>
-                  )}
-                  <h2 className="text-2xl md:text-3xl">{post.title}</h2>
-                  {post.description && (
-                    <p className="mt-3 text-lg opacity-60">
-                      {post.description}
-                    </p>
-                  )}
-                  <ArrowIcon className="mt-4" />
-                </a>
+                className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
+                {post.date && (
+                  <p className="uppercase mb-3 font-bold opacity-60">
+                    {new Date(post.date).toLocaleDateString('es-ES')}
+                  </p>
+                )}
+                <h2 className="text-2xl md:text-3xl">{post.title}</h2>
+                {post.description && (
+                  <p className="mt-3 text-lg opacity-60">
+                    {post.description}
+                  </p>
+                )}
+                <ArrowIcon className="mt-4" />
               </Link>
             </li>
           ))}
         </ul>
       </main>
-      <Footer copyrightText={globalData.footerText} />
-      <GradientBackground
-        variant="large"
-        className="fixed top-20 opacity-40 dark:opacity-60"
-      />
-      <GradientBackground
-        variant="small"
-        className="absolute bottom-0 opacity-20 dark:opacity-10"
-      />
-    </Layout>
+    </>
   );
 
 

@@ -22,3 +22,7 @@ export const retrieveBlockChildren = async (url: string) =>
     // Get the post by its URL
     block_id: url
   });
+
+export const getAllUsers = async () =>
+  await notion.users.list({
+  });

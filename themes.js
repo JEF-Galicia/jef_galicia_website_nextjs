@@ -2,8 +2,9 @@ exports.COLOR_THEMES = {
   jef_galicia: {
     colors: {
       primary: '#00CC66',
-      'gradient-1': '#2D3142',
-      'gradient-2': '#4A576D',
+      accent: '#FFCC00',
+      'gradient-1': '#2D432D',
+      'gradient-2': '#426147',
       'gradient-3': '#FFFFFF',
       'gradient-4': '#FFCC00',
     },

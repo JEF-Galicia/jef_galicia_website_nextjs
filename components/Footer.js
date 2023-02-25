@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { GlobalContext } from "../utils/context";
+
 const sunIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -77,11 +80,12 @@ const ThemeSwitcher = () => {
   );
 };
 
-export default function Footer({ copyrightText }) {
+export default function Footer() {
+  const [globalContext] = useContext(GlobalContext);
   return (
-    <footer className="py-16 flex flex-col items-center">
-      <p className="dark:text-white uppercase mb-3 font-bold opacity-60">
-        {copyrightText}
+    <footer className="py-16 flex flex-col items-center mx-6">
+      <p className="dark:text-white uppercase mb-3 font-bold opacity-60 text-xs">
+        {globalContext.footerText}
       </p>
       <ThemeSwitcher />
     </footer>
