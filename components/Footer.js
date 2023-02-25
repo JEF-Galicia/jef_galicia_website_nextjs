@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { GlobalContext } from "../utils/context";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const sunIcon = (
   <svg
@@ -84,6 +85,14 @@ export default function Footer() {
   const [globalContext] = useContext(GlobalContext);
   return (
     <footer className="py-16 flex flex-col items-center mx-6">
+      <div className="flex">
+        <a href="https://www.instagram.com/jef_galicia/" target="_blank">
+          <FontAwesomeIcon icon="fa-brands fa-square-instagram" />
+        </a>
+        <a href="https://www.linkedin.com/company/jef-galicia/" target="_blank">
+          <FontAwesomeIcon icon="fa-brands fa-linkedin" />
+        </a>
+      </div>
       <p className="dark:text-white uppercase mb-3 font-bold opacity-60 text-xs">
         {globalContext.footerText}
       </p>
