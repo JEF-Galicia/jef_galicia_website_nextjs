@@ -21,7 +21,7 @@ export default function Navbar() {
             <div className="block lg:hidden">
                 <button className="flex items-center px-3 py-2 border rounded hover:border-opacity-30 hover:border-black dark:hover:border-white" onClick={() => setIsOpen(!isOpen)}>
                     <svg className="h-3 w-3 fill-black dark:fill-white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <title>Menu</title>
+                        <title>Menú</title>
                         <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
                     </svg>
                 </button>
@@ -36,8 +36,8 @@ export default function Navbar() {
                     </Link>
                 </div>
                 <div>
-                    <Link href="/join" className="inline-block text-sm px-4 py-2 leading-none border rounded transition text-black border-black border-opacity-30 hover:border-transparent hover:text-white hover:bg-primary mt-4 lg:mt-0">
-                        Inscrición
+                    <Link href="/join" className="inline-block text-sm px-4 py-2 leading-none border rounded transition text-black border-black dark:border-white dark:hover:border-transparent dark:text-white border-opacity-30 hover:border-transparent hover:text-white hover:bg-primary mt-4 lg:mt-0">
+                        Inscribirme
                     </Link>
                 </div>
             </div>

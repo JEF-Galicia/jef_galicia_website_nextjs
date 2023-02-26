@@ -15,6 +15,7 @@ import { Render, withContentValidation } from '@9gustin/react-notion-render';
 import '@9gustin/react-notion-render/dist/index.css';
 import styles from './[id].module.css';
 import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import BoxComponent from '../../components/Box';
 
 export async function getStaticPaths() {
     return {
@@ -125,8 +126,7 @@ export default function PostPage({ post, blockChildren, globalData }: { post: Po
                 <h1 className="text-3xl lg:text-5xl text-center mb-12">
                     {globalData.blogTitle}
                 </h1>
-                <div className="w-full md:rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b">
-                    <div className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
+                <BoxComponent>
                         {post.date && (
                             <p className="uppercase mb-3 font-bold opacity-60">
                                 {new Date(post.date).toLocaleDateString('es-ES')}
@@ -139,8 +139,7 @@ export default function PostPage({ post, blockChildren, globalData }: { post: Po
                             </p>
                         )}
                         <Render blocks={blockChildren} useStyles classNames blockComponentsMapper={blockComponentsMapper} />
-                    </div>
-                </div>
+                </BoxComponent>
             </main>
         </>
     )
