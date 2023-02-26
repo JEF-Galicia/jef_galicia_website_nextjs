@@ -32,7 +32,7 @@ export default function Subscribe() {
 
         // 5. Clear the input value and show a success message.
         inputEl.current.value = '';
-        setMessage('Success! 🎉 You are now subscribed to the newsletter.');
+        setMessage('Ben feito! En breve contactaremos contigo 🥰.');
     };
 
     return (
