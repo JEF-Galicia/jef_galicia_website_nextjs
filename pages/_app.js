@@ -8,12 +8,14 @@ import { GlobalContext } from '../utils/context';
 import { useContext, useState } from 'react';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
+import { GoogleAnalytics } from "nextjs-google-analytics";
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }) {
   const [context, setContext] = useState({ name: 'JEF Galicia', footerText: '© 2023. Todos os dereitos reservados.' });
   return (
     <span className="theme-jef_galicia" style={{ minHeight: '100vh' }}>
+      <GoogleAnalytics trackPageViews />
       <GlobalContext.Provider value={{globalContext: context, setContext}}>
         <Navbar></Navbar>
         <Layout>
