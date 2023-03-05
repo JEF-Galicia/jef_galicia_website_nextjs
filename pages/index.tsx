@@ -19,7 +19,7 @@ type IndexProps = {
 
 export async function getStaticProps() {
   const database = await queryDatabase();
-  const posts = parseProperties(database);
+  const posts = parseProperties(database).filter((post) => !post.archived);
 
   //const posts = getPosts();
   const globalData = getGlobalData();
