@@ -93,7 +93,7 @@ export default function PostPage({ post, blockChildren, globalData }: { post: Po
             return (<p className="text-lg mb-6">{props.children}</p>)
         }),
         'quote': withContentValidation((props) => {
-            return (<blockquote className="text-lg italic">{props.children}</blockquote>)
+            return (<blockquote className="text-lg italic mb-6 mx-3">{props.children}</blockquote>)
         }),
         'divider': withContentValidation((props) => {
             return (<hr className="my-6" />)
