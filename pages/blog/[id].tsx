@@ -90,7 +90,7 @@ export default function PostPage({ post, blockChildren, globalData }: { post: Po
             return (<li className="list-disc list-inside">{props.children} ABC</li>)
         }),*/
         'paragraph': withContentValidation((props) => {
-            return (<p className="text-lg">{props.children}</p>)
+            return (<p className="text-lg mb-6">{props.children}</p>)
         }),
         'quote': withContentValidation((props) => {
             return (<blockquote className="text-lg italic">{props.children}</blockquote>)

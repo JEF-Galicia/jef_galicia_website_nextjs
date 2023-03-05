@@ -24,7 +24,7 @@ export async function getStaticProps() {
   //const posts = getPosts();
   const globalData = getGlobalData();
 
-  return { props: { posts, globalData }, revalidate: 60 };
+  return { props: { posts, globalData }, revalidate: 360 };
 }
 
 export default function Index({ posts, globalData }: IndexProps) {
