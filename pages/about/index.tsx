@@ -1,19 +1,19 @@
 import Link from 'next/link';
 
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Layout, { GradientBackground } from '../components/Layout';
-import ArrowIcon from '../components/ArrowIcon';
-import { getGlobalData } from '../utils/global-data';
-import SEO from '../components/SEO';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import Layout, { GradientBackground } from '../../components/Layout';
+import ArrowIcon from '../../components/ArrowIcon';
+import { getGlobalData } from '../../utils/global-data';
+import SEO from '../../components/SEO';
 
-import { parseProperties } from '../api/parse-properties';
-import { getAllUsers, queryDatabase } from '../api/query-database';
+import { parseProperties } from '../../api/parse-properties';
+import { getAllUsers, queryDatabase } from '../../api/query-database';
 import { any } from 'cypress/types/bluebird';
 import { UserObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import Image from 'next/image';
 import { useContext } from 'react';
-import { GlobalContext } from '../utils/context';
+import { GlobalContext } from '../../utils/context';
 
 type IndexProps = {
     users: UserObjectResponse[];
@@ -28,7 +28,11 @@ export async function getStaticProps() {
 export default function Index({ users }: IndexProps) {
     return (
         <main className="w-full">
-            <h1 className="text-3xl text-center mb-12">
+            {/*<h1 className="text-3xl text-center mb-6 mt-12">
+                Sobre a Federación
+            </h1>
+    <button type="submit" className='inline-block text-sm px-4 py-2 leading-none border rounded transition text-black border-black dark:border-white dark:hover:border-transparent dark:text-white border-opacity-30 hover:border-transparent hover:text-white hover:bg-primary mt-4 lg:mt-0'>{'Inscribirme 💌'}</button>*/}
+            <h1 className="text-3xl text-center mb-6">
                 Sobre nós
             </h1>
             <p className="text-center mb-12">
@@ -51,7 +55,7 @@ export default function Index({ users }: IndexProps) {
                                 </h2>
                                 {
                                     user['person'] && user['person']['email'] && (
-                                        <a href={'mailto:'+user['person']['email']} className="mt-3 text-lg opacity-60">
+                                        <a href={'mailto:' + user['person']['email']} className="mt-3 text-lg opacity-60">
                                             {user['person']['email']}
                                         </a>
                                     )

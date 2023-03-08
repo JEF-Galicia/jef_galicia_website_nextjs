@@ -27,11 +27,14 @@ export default function Navbar() {
                 </button>
             </div>
             <div className={(isOpen ? "block" : "hidden") + " w-full flex-grow lg:flex lg:items-center lg:w-auto"}>
-                <div className="text-sm lg:flex-grow">
-                    <Link href="/about" className="block mt-4 lg:inline-block lg:mt-0 mr-4 hover:text-primary">
+                <div className="text-sm lg:flex-grow lg:flex lg:gap-8">
+                    <Link href="/about" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
                         <span className={router.pathname === "/about" ? "text-primary" : ""}>Sobre nós</span>
                     </Link>
-                    <Link href="/contact" className="block mt-4 lg:inline-block lg:mt-0 mr-4 hover:text-primary">
+                    <Link href="/about/federation" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
+                        <span className={router.pathname === "/about/federation" ? "text-primary" : ""}>Sobre JEF</span>
+                    </Link>
+                    <Link href="/contact" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
                         <span className={router.pathname === "/contact" ? "text-primary" : ""}>Contacto</span>
                     </Link>
                 </div>

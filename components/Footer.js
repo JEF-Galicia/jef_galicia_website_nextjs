@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { GlobalContext } from "../utils/context";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faFacebookSquare, faInstagram, faInstagramSquare, faLinkedin, faLinkedinIn, faTwitter, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 
 const sunIcon = (
   <svg
@@ -84,16 +85,22 @@ const ThemeSwitcher = () => {
 export default function Footer() {
   const {globalContext} = useContext(GlobalContext);
   return (
-    <footer className="py-16 flex flex-col items-center mx-6">
-      <div className="flex">
+    <footer className="py-16 flex flex-col items-center mx-6 dark:text-white font-bold">
+      <div className="flex opacity-60 gap-4 text-2xl mb-4">
         <a href="https://www.instagram.com/jef_galicia/" target="_blank">
-          <FontAwesomeIcon icon="fa-brands fa-square-instagram" />
+          <FontAwesomeIcon icon={faInstagramSquare} />
+        </a>
+        <a href="https://twitter.com/jef_galicia/" target="_blank">
+          <FontAwesomeIcon icon={faTwitterSquare} />
+        </a>
+        <a href="https://www.facebook.com/profile/jef_galicia" target="_blank">
+          <FontAwesomeIcon icon={faFacebookSquare} />
         </a>
         <a href="https://www.linkedin.com/company/jef-galicia/" target="_blank">
-          <FontAwesomeIcon icon="fa-brands fa-linkedin" />
+          <FontAwesomeIcon icon={faLinkedin} />
         </a>
       </div>
-      <p className="dark:text-white uppercase mb-3 font-bold opacity-60 text-xs">
+      <p className="uppercase mb-3 opacity-60 text-xs">
         {globalContext.footerText}
       </p>
       <ThemeSwitcher />
