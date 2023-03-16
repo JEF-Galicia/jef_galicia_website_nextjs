@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import logoJef from '../public/Main_Isotype.svg';
+import logoJef from '../public/Main_Imagetype_Bounded.svg';
 import { useContext } from 'react';
 import { GlobalContext } from '../utils/context';
 
