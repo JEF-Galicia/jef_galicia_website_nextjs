@@ -9,12 +9,14 @@ export default function Header() {
 
     return (
         <header className="pb-12">
-            <div className="w-12 h-12 rounded-full block mx-auto mb-4" >
+            <div className="h-22 flex mx-0 mb-4 flex-col place-items-center" >
                 <Image src={logoJef} ></Image>
             </div>
+            {/*
             <p className="text-2xl dark:text-white text-center">
                 {globalContext.name}
             </p>
+            */}
         </header>
     );
 }
