@@ -5,7 +5,6 @@ import Header from '../../components/Header';
 import Layout, { GradientBackground } from '../../components/Layout';
 import ArrowIcon from '../../components/ArrowIcon';
 import { getGlobalData } from '../../utils/global-data';
-import SEO from '../../components/SEO';
 
 import { parseProperties } from '../../api/parse-properties';
 import { getAllUsers, queryDatabase } from '../../api/query-database';
@@ -14,6 +13,7 @@ import { UserObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import Image from 'next/image';
 import { useContext } from 'react';
 import { GlobalContext } from '../../utils/context';
+import { NextSeo } from 'next-seo';
 
 type IndexProps = {
     users: UserObjectResponse[];
@@ -28,6 +28,10 @@ export async function getStaticProps() {
 export default function Index({ users }: IndexProps) {
     return (
         <main className="w-full">
+            <NextSeo
+                title="Sobre JEF Galicia"
+                description="Información sobre JEF Galicia e os seus membros"
+            />
             {/*<h1 className="text-3xl text-center mb-6 mt-12">
                 Sobre a Federación
             </h1>

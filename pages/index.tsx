@@ -6,11 +6,11 @@ import Header from '../components/Header';
 import Layout, { GradientBackground } from '../components/Layout';
 import ArrowIcon from '../components/ArrowIcon';
 import { getGlobalData } from '../utils/global-data';
-import SEO from '../components/SEO';
 
 import { parseProperties, Post } from '../api/parse-properties';
 import { queryDatabase } from '../api/query-database';
 import { any } from 'cypress/types/bluebird';
+import { NextSeo } from 'next-seo';
 
 type IndexProps = {
   posts: Post[];
@@ -30,7 +30,10 @@ export async function getStaticProps() {
 export default function Index({ posts, globalData }: IndexProps) {
   return (
     <>
-      <SEO title={globalData.name} description={globalData.blogTitle} />
+      <NextSeo
+        title="Inicio"
+        description="Somos unha asociación sen ánimo de lucro adicada ao fomento da participación da xuventude galega na construción dunha Europa federal, a través da organización de actividades e campañas de sensibilización e formación."
+      />
       <Header />
       <main className="w-full">
         <h1 className="text-3xl lg:text-5xl text-center mb-12">
