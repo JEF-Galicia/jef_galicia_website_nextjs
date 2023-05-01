@@ -2,5 +2,5 @@
 module.exports = {
   siteUrl: process.env.SITE_URL || 'https://jef.gal',
   generateRobotsTxt: true, // (optional)
-  // ...other options
+  exclude: '/posts/*'
 }

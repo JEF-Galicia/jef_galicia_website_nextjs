@@ -40,7 +40,7 @@ export default function Subscribe() {
         <>
             <NextSeo
                 title="Inscrición"
-                description="Formularion de inscrición á nosa asociación"
+                description="Forma parte da próxima xeración de europeístas! Inscríbete a JEF Galicia."
             />
             <BoxComponent>
                 <h1 className='text-3xl font-semibold mb-6'>Inscríbete!</h1>
