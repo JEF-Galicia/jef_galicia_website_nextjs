@@ -37,6 +37,9 @@ export default function Navbar() {
                     <Link href="/contact" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
                         <span className={router.pathname === "/contact" ? "text-primary" : ""}>Contacto</span>
                     </Link>
+                    <Link href="/events/fishing" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
+                        <span className={router.pathname === "/events/fishing" ? "text-primary" : ""}>Evento Pesca</span>
+                    </Link>
                 </div>
                 <div>
                     <Link href="/join" className="inline-block text-sm px-4 py-2 leading-none border rounded transition text-black border-black dark:border-white dark:hover:border-transparent dark:text-white border-opacity-30 hover:border-transparent hover:text-white hover:bg-primary mt-4 lg:mt-0">
