@@ -43,7 +43,8 @@ export default function Fishing() {
           <a href="https://goo.gl/maps/vBw1zKRBJreEp8b98" className="opacity-60">📍Tes aquí a direción do Google Maps</a>
         </p>
         <p className="mb-6">Esperámoste! 🙌</p>
-        <div className="justify-center">
+        
+        <div className="flex justify-center">
           <a
             href="https://www.eventbrite.es/e/el-sector-pesquero-gallego-ante-la-restriccion-de-la-pesca-de-fondo-tickets-620268839797"
             className="w-auto font-semibold text-sm px-4 py-2 leading-none border rounded transition text-black border-black dark:border-white dark:hover:border-transparent dark:text-white border-opacity-30 hover:border-transparent hover:text-white hover:bg-primary mt-4"
