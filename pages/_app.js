@@ -14,7 +14,7 @@ import { DefaultSeo } from 'next-seo';
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }) {
-  const [context, setContext] = useState({ name: 'JEF Galicia', footerText: '© 2023. Todos os dereitos reservados.' });
+  const [context, setContext] = useState({ name: 'JEF Galicia'});
   return (
     <span className="theme-jef_galicia" style={{ minHeight: '100vh' }}>
       <DefaultSeo {...SEO} />

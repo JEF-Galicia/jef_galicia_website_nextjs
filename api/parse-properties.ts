@@ -15,7 +15,6 @@ export const parsePost = (post: any): Post => {
   const date = post.properties.Fecha.date ? new Date(post.properties.Fecha.date.start).getTime() : null;
   const archived = post.archived;
   const createdPost: Post = { id, title, description, date, archived };
-  console.log(createdPost);
   return createdPost;
 };
 

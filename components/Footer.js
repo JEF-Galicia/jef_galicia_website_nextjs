@@ -101,7 +101,7 @@ export default function Footer() {
         </a>
       </div>
       <p className="uppercase mb-3 opacity-60 text-xs">
-        {globalContext.footerText}
+        {`© ${new Date().getFullYear()}, JEF Galicia. Todos os dereitos reservados.`}
       </p>
       <ThemeSwitcher />
     </footer>

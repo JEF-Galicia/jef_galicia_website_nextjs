@@ -20,7 +20,12 @@ type IndexProps = {
 };
 
 export async function getStaticProps() {
-    const users = (await getAllUsers()).results.filter((user) => user.type === 'person');
+    var users = [];
+    try {
+        users = (await getAllUsers()).results.filter((user) => user.type === 'person');
+    } catch (e) {
+        console.error(e);
+    }
 
     return { props: { users }, revalidate: 86400 };
 }

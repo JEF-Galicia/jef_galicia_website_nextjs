@@ -34,6 +34,9 @@ export default function Navbar() {
                     <Link href="/about/federation" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
                         <span className={router.pathname === "/about/federation" ? "text-primary" : ""}>Sobre JEF</span>
                     </Link>
+                    <Link href="/about/what_we_do" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
+                        <span className={router.pathname === "/about/what_we_do" ? "text-primary" : ""}>Que facemos</span>
+                    </Link>
                     <Link href="/contact" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
                         <span className={router.pathname === "/contact" ? "text-primary" : ""}>Contacto</span>
                     </Link>
