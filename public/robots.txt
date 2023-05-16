@@ -1,3 +1,9 @@
-# Allow all crawlers
+# *
 User-agent: *
 Allow: /
+
+# Host
+Host: https://jef.gal
+
+# Sitemaps
+Sitemap: https://jef.gal/sitemap.xml
