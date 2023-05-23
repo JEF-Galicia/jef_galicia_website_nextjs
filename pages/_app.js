@@ -10,6 +10,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import SEO from '../next-seo.config';
 import { GoogleAnalytics } from "nextjs-google-analytics";
+import styles from './styles.scss';
 import { DefaultSeo } from 'next-seo';
 config.autoAddCss = false;
 
