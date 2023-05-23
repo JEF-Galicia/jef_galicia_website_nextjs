@@ -46,7 +46,6 @@ function MyApp({ Component, pageProps }) {
           declineButtonText="Non quero cookies 🙅‍♂️"
           declineButtonClasses="text-sm px-4 py-2 leading-none border rounded transition text-black border-black dark:border-white dark:hover:border-transparent dark:text-white border-opacity-30 hover:border-transparent hover:text-white hover:bg-primary mt-4 lg:mt-0 mr-4"
           buttonText="Xenial! 😍"
-          style={{  }}
           expires={150}
         >
           Empregamos cookies para mellorar a túa experiencia de usuario 🪄
