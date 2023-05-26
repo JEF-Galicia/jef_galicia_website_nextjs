@@ -24,9 +24,9 @@ function MyApp({ Component, pageProps }) {
       <GlobalContext.Provider value={{ globalContext: context, setContext }}>
         <Navbar></Navbar>
         <Layout>
-          <div className='mt-24 lg:mt-36'>
+          <main className='mt-24 lg:mt-36'>
             <Component {...pageProps} />
-          </div>
+          </main>
           <GradientBackground
             variant="large"
             className="fixed top-20 opacity-40 dark:opacity-60"

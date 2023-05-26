@@ -93,7 +93,7 @@ export default function Footer() {
         <a href="https://twitter.com/jef_galicia/" target="_blank">
           <FontAwesomeIcon icon={faTwitterSquare} />
         </a>
-        <a href="https://www.facebook.com/profile/jef_galicia" target="_blank">
+        <a href="https://www.facebook.com/jef.galic/" target="_blank">
           <FontAwesomeIcon icon={faFacebookSquare} />
         </a>
         <a href="https://www.linkedin.com/company/jef-galicia/" target="_blank">
