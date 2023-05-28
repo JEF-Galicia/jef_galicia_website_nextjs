@@ -2,6 +2,7 @@ import { NextSeo } from 'next-seo';
 import BoxComponent from '../../components/Box';
 import Image from 'next/image';
 import imagenEvento from '../../public/ImagenPesca.png';
+import ButtonComponent from '../../components/Button';
 
 export default function Fishing() {
   return (
@@ -20,7 +21,7 @@ export default function Fishing() {
         <p className="mb-6">
           Neste evento presentaremos a nova asociación JEF Galicia, ó mesmo
           tempo que debatiremos as últimas noticias sobre <span className="font-semibold">a política pesqueira
-          común</span>, co obxectivo de achegar máis as políticas da Unión Europea á
+            común</span>, co obxectivo de achegar máis as políticas da Unión Europea á
           cidadanía galega.
         </p>
         <p className="mb-6">
@@ -35,21 +36,36 @@ export default function Fishing() {
           </a>
           .
         </p>
-        <p className='mb-6'><span className="font-semibold">Onde:</span> <br/>
-          Salón de Actos, Escola Técnica Superior de Enxeñaría <br/>
-          Rúa de Lope Gómez de Marzoa, S/N <br/>
-          Campus Vida, Universidade de Santiago de Compostela <br/>
-          15705 Santiago de Compostela <br />
-          <a href="https://goo.gl/maps/vBw1zKRBJreEp8b98" className="opacity-60">📍Tes aquí a direción do Google Maps</a>
-        </p>
-        <p className="mb-6">Esperámoste! 🙌</p>
-        
-        <div className="flex justify-center">
+        <h2 className=''><span className="font-semibold">Cando?</span></h2>
+        <div className="w-full md:rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-0 bg-opacity-0 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b py-4 lg:py-6 px-4 lg:px-10 block focus:outline-none focus:ring-4 mb-6 mt-3">
+        <p className='font-medium'>🗓️ 7 de xullo, 2023</p>
+        <p className='font-medium'>⌚ 17h</p>
+        </div>
+        <h2 className=''><span className="font-semibold">Onde?</span></h2>
+        <div className="w-full md:rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-0 bg-opacity-0 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b py-4 lg:py-6 px-4 lg:px-10 block focus:outline-none focus:ring-4 mb-6 mt-3">
+          <p className="">
+            <span className="font-medium">Salón de Actos, Escola Técnica Superior de Enxeñaría</span><br />
+              Rúa de Lope Gómez de Marzoa, S/N<br />
+              Campus Vida, Universidade de Santiago de Compostela<br />
+              15705 Santiago de Compostela
+          </p>
+        <a
+          href="https://goo.gl/maps/vBw1zKRBJreEp8b98"
+        >
+          <ButtonComponent className="w-full md:w-auto mt-2 mb-2">
+            📍 Tes aquí a direción do Google Maps
+          </ButtonComponent>
+        </a>
+        </div>
+        <p className="mt-6 mb-2 font-medium">Esperámoste! 🙌</p>
+
+        <div className="flex justify-start">
           <a
             href="https://www.eventbrite.es/e/el-sector-pesquero-gallego-ante-la-restriccion-de-la-pesca-de-fondo-tickets-620268839797"
-            className="w-auto font-semibold text-sm px-4 py-2 leading-none border rounded transition text-black border-black dark:border-white dark:hover:border-transparent dark:text-white border-opacity-30 hover:border-transparent hover:text-white hover:bg-primary mt-4"
           >
-            {'Reserva o teu sitio! 🪑'}
+            <ButtonComponent className="w-full md:w-auto">
+              Reserva o teu sitio! 🪑
+            </ButtonComponent>
           </a>
         </div>
       </BoxComponent>
