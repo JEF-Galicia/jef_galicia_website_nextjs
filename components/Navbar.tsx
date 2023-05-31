@@ -40,6 +40,9 @@ export default function Navbar() {
                     <Link href="/contact" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
                         <span className={router.pathname === "/contact" ? "text-primary" : ""}>Contacto</span>
                     </Link>
+                    <a href="https://www.change.org/p/ban-unpaid-internships" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
+                        <span>#BanUnpaidInternships</span>
+                    </a>
                     <Link href="/events/fishing" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
                         <span className={router.pathname === "/events/fishing" ? "text-primary" : ""}>Evento Pesca</span>
                     </Link>
