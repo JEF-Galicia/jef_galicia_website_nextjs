@@ -44,13 +44,12 @@ export default function Fishing() {
         <h2 className=''><span className="font-semibold">Onde?</span></h2>
         <div className="w-full md:rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-0 bg-opacity-0 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b py-4 lg:py-6 px-4 lg:px-10 block focus:outline-none focus:ring-4 mb-6 mt-3">
           <p className="">
-            <span className="font-medium">Salón de Actos, Escola Técnica Superior de Enxeñaría</span><br />
-              Rúa de Lope Gómez de Marzoa, S/N<br />
-              Campus Vida, Universidade de Santiago de Compostela<br />
-              15705 Santiago de Compostela
+            <span className="font-medium">Autoridade Portuaria de A Coruña</span><br />
+              Avenida da Marina, 3<br />
+              15001 A Coruña
           </p>
         <a
-          href="https://goo.gl/maps/vBw1zKRBJreEp8b98"
+          href="https://goo.gl/maps/5yzM2CrMvf4QCnRL6"
         >
           <ButtonComponent className="w-full md:w-auto mt-2 mb-2">
             📍 Tes aquí a direción do Google Maps
