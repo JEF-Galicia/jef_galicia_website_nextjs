@@ -8,12 +8,12 @@ export default function Fishing() {
   return (
     <>
       <NextSeo
-        title="O sector pesqueiro galego ante a restrición da pesca de fondo"
+        title="A Actualidade da Política Pesqueira na Unión Europea e Galicia"
         description="Información e métodos de contacto cos nosos membros"
       />
       <BoxComponent>
         <h1 className="text-3xl md:text-5xl font-semibold mb-8">
-          O sector pesqueiro galego ante a restrición da pesca de fondo
+          A Actualidade da Política Pesqueira na Unión Europea e Galicia
         </h1>
         <div className="h-22 flex mx-0 mb-4 flex-col place-items-center rounded">
           <Image src={imagenEvento} alt="Imaxe do evento" className="rounded" />
