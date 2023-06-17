@@ -11,6 +11,8 @@ import { parseProperties, Post } from '../api/parse-properties';
 import { queryDatabase } from '../api/query-database';
 import { any } from 'cypress/types/bluebird';
 import { NextSeo } from 'next-seo';
+import imgTransparenteLogo from '../public/Main_Isotype.png';
+import Image from 'next/image';
 
 type IndexProps = {
   posts: Post[];
@@ -41,6 +43,7 @@ export default function Index({ posts, globalData }: IndexProps) {
       />
       <Header />
       <main className="w-full">
+        <Image src={imgTransparenteLogo} alt="" className="rounded" style={{opacity: 0, height: 1, width:1, position: 'absolute'}} />
         <h1 className="text-3xl lg:text-5xl text-center mb-12">
           {globalData.blogTitle}
         </h1>
