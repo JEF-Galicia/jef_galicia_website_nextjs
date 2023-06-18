@@ -39,7 +39,7 @@ export default function Fishing() {
         <h2 className=''><span className="font-semibold">Cando?</span></h2>
         <div className="w-full md:rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-0 bg-opacity-0 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b py-4 lg:py-6 px-4 lg:px-10 block focus:outline-none focus:ring-4 mb-6 mt-3">
         <p className='font-medium'>🗓️ 7 de xullo, 2023</p>
-        <p className='font-medium'>⌚ 17h</p>
+        <p className='font-medium'>⌚ 17:30h - 19:00h</p>
         </div>
         <h2 className=''><span className="font-semibold">Onde?</span></h2>
         <div className="w-full md:rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-0 bg-opacity-0 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b py-4 lg:py-6 px-4 lg:px-10 block focus:outline-none focus:ring-4 mb-6 mt-3">
