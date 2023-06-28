@@ -2,6 +2,9 @@ import { NextSeo } from 'next-seo';
 import BoxComponent from '../../components/Box';
 import Image from 'next/image';
 import imagenEvento from '../../public/ImagenPesca.png';
+import EUCofundedLogo from '../../public/Cofunded_EU_Logo.png';
+import JEFEuropeLogo from '../../public/JEF_EU_Logo.png';
+import JEFGalLogo from '../../public/Main_Imagetype.svg';
 import ButtonComponent from '../../components/Button';
 
 export default function Fishing() {
@@ -17,6 +20,11 @@ export default function Fishing() {
         </h1>
         <div className="h-22 flex mx-0 mb-4 flex-col place-items-center rounded">
           <Image src={imagenEvento} alt="Imaxe do evento" className="rounded" />
+        </div>
+        <div className="grid grid-cols-3 gap-12 px-4 md:px-16 pb-6 items-center">
+          <Image src={EUCofundedLogo} alt="Co-funded by the EU" className="" />
+          <Image src={JEFEuropeLogo} alt="JEF Europa" className="" />
+          <Image src={JEFGalLogo} alt="JEF Galicia" className="" />
         </div>
         <p className="mb-6">
           Neste evento presentaremos a nova asociación JEF Galicia, ó mesmo
@@ -38,23 +46,23 @@ export default function Fishing() {
         </p>
         <h2 className=''><span className="font-semibold">Cando?</span></h2>
         <div className="w-full md:rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-0 bg-opacity-0 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b py-4 lg:py-6 px-4 lg:px-10 block focus:outline-none focus:ring-4 mb-6 mt-3">
-        <p className='font-medium'>🗓️ 7 de xullo, 2023</p>
-        <p className='font-medium'>⌚ 17:30h - 19:00h</p>
+          <p className='font-medium'>🗓️ 7 de xullo, 2023</p>
+          <p className='font-medium'>⌚ 17:30h - 19:00h</p>
         </div>
         <h2 className=''><span className="font-semibold">Onde?</span></h2>
         <div className="w-full md:rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-0 bg-opacity-0 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b py-4 lg:py-6 px-4 lg:px-10 block focus:outline-none focus:ring-4 mb-6 mt-3">
           <p className="">
             <span className="font-medium">Autoridade Portuaria de A Coruña</span><br />
-              Avenida da Marina, 3<br />
-              15001 A Coruña
+            Avenida da Marina, 3<br />
+            15001 A Coruña
           </p>
-        <a
-          href="https://goo.gl/maps/5yzM2CrMvf4QCnRL6"
-        >
-          <ButtonComponent className="w-full md:w-auto mt-2 mb-2">
-            📍 Tes aquí a direción do Google Maps
-          </ButtonComponent>
-        </a>
+          <a
+            href="https://goo.gl/maps/5yzM2CrMvf4QCnRL6"
+          >
+            <ButtonComponent className="w-full md:w-auto mt-2 mb-2">
+              📍 Tes aquí a direción do Google Maps
+            </ButtonComponent>
+          </a>
         </div>
         <p className="mt-6 mb-2 font-medium">Esperámoste! 🙌</p>
 
@@ -67,6 +75,7 @@ export default function Fishing() {
             </ButtonComponent>
           </a>
         </div>
+
       </BoxComponent>
     </>
   );
