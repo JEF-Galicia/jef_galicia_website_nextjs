@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo';
 import BoxComponent from '../../components/Box';
 import Image from 'next/image';
-import imagenEvento from '../../public/ImagenPesca2.png';
+import imagenEvento from '../../public/ImagenPesca3.png';
 import EUCofundedLogo from '../../public/Cofunded_EU_Logo.png';
 import JEFEuropeLogo from '../../public/JEF_EU_Logo.png';
 import JEFGalLogo from '../../public/Main_Imagetype.svg';
@@ -18,7 +18,7 @@ export default function Fishing() {
         <h1 className="text-3xl md:text-5xl font-semibold mb-8">
           A Actualidade da Política Pesqueira na Unión Europea e Galicia
         </h1>
-        <div className="h-22 flex mx-0 mb-4 flex-col place-items-center rounded">
+        <div className="h-22 w-100 flex mx-0 mb-4 flex-col place-items-center rounded">
           <Image src={imagenEvento} alt="Imaxe do evento" className="rounded" />
         </div>
         <div className="grid grid-cols-3 gap-12 px-4 md:px-16 pb-6 items-center">
