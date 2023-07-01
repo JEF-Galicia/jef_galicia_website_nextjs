@@ -15,23 +15,23 @@ export default function Fishing() {
         description="Información e métodos de contacto cos nosos membros"
       />
       <BoxComponent>
-        <h1 className="text-3xl md:text-5xl font-semibold mb-8">
-          A Actualidade da Política Pesqueira na Unión Europea e Galicia
-        </h1>
-        <div className="h-22 w-100 flex mx-0 mb-4 flex-col place-items-center rounded">
-          <Image src={imagenEvento} alt="Imaxe do evento" className="rounded" />
-        </div>
         <div className="grid grid-cols-3 gap-12 px-4 md:px-16 pb-6 items-center">
           <Image src={EUCofundedLogo} alt="Co-funded by the EU" className="" />
           <Image src={JEFEuropeLogo} alt="JEF Europa" className="" />
           <Image src={JEFGalLogo} alt="JEF Galicia" className="" />
         </div>
+        <h1 className="text-3xl md:text-5xl font-semibold mb-8">
+          A Actualidade da Política Pesqueira na Unión Europea e Galicia
+        </h1>
+        {/*<div className="h-22 w-100 flex mx-0 mb-4 flex-col place-items-center rounded">
+          <Image src={imagenEvento} alt="Imaxe do evento" className="rounded" />
+        </div>*/}
         <div className="flex justify-start w-full mb-6">
           <a
             className="w-full md:w-full flex-grow"
             href="https://www.eventbrite.es/e/el-sector-pesquero-gallego-ante-la-restriccion-de-la-pesca-de-fondo-tickets-620268839797"
           >
-            <ButtonComponent className="w-full">
+            <ButtonComponent className="w-full bg-opacity-30 hover:bg-opacity-100 bg-primary text-white">
               Reserva o teu sitio! 🪑
             </ButtonComponent>
           </a>
