@@ -29,7 +29,7 @@ export default function Fishing() {
         <div className="flex justify-start w-full mb-6">
           <a
             className="w-full md:w-full flex-grow"
-            href="https://www.eventbrite.es/e/el-sector-pesquero-gallego-ante-la-restriccion-de-la-pesca-de-fondo-tickets-620268839797"
+            href="https://www.eventbrite.es/e/entradas-a-actualidade-da-politica-pesqueira-ue-e-galicia-620268839797?aff=jefgal"
           >
             <ButtonComponent className="w-full bg-opacity-30 hover:bg-opacity-100 bg-primary text-white">
               Reserva o teu sitio! 🪑
@@ -51,7 +51,7 @@ export default function Fishing() {
             15001 A Coruña
           </p>
           <a
-            href="https://goo.gl/maps/5yzM2CrMvf4QCnRL6"
+            href="https://goo.gl/maps/zPo5YXCYU3R7H8dz7"
           >
             <ButtonComponent className="w-full md:w-auto mt-2 mb-2">
               📍 Tes aquí a direción do Google Maps
