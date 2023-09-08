@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }) {
       <DefaultSeo {...SEO} />
       {getCookieConsentValue() ? <GoogleAnalytics trackPageViews /> : <></>}
       <GlobalContext.Provider value={{ globalContext: context, setContext }}>
-        <Navbar></Navbar>
+        <Navbar />
         <Layout>
           <main className='mt-24 lg:mt-36'>
             <Component {...pageProps} />

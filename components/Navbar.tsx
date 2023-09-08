@@ -4,14 +4,48 @@ import logoJef from '../public/Main_Isotype.svg';
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { GlobalContext } from "../utils/context";
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ButtonComponent from "./Button";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState([]);
     const router = useRouter();
     const {globalContext} = useContext(GlobalContext);
 
+    const showDropdown = (name) => {
+        // if the dropdown is closed, open it
+        if (! isDropdownOpen.includes(name)) {
+            setIsDropdownOpen([...isDropdownOpen, name]);
+        }
+    }
+
+    const hideDropdown = (name) => {
+        // if the dropdown is open, close it
+        if (isDropdownOpen.includes(name)) {
+            setIsDropdownOpen(isDropdownOpen.filter((item) => item !== name));
+        }
+    }
+
+    const toggleDropdown = (name) => {
+        if (isDropdownOpen.includes(name)) {
+            hideDropdown(name);
+        } else {
+            showDropdown(name);
+        }
+    }
+
+    const shouldDropdownBeOpen = (name) => {
+        return isDropdownOpen.includes(name);
+    }
+
+    const projects = {'ChatMadariaga': 'chatmadariaga',
+'Banco por Europa': 'bench_for_europe',
+'OpportEUnities': 'opporteunities'}
+
     return (
-        <nav className="flex items-center justify-between flex-wrap p-6 backdrop-blur bg-white dark:bg-black bg-opacity-10 dark:bg-opacity-30 transition border-b border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50">
+        <nav className="sticky z-50 top-0 flex items-center justify-between flex-wrap p-6 backdrop-blur bg-white dark:bg-black bg-opacity-10 dark:bg-opacity-30 transition border-b border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50">
             <Link href="/" className="flex items-center flex-no-shrink mr-6">
                 <div className="h-8 w-8 mr-2">
                     <Image src={logoJef} width={32} height={32} alt="JEF Galicia logo"></Image>
@@ -27,7 +61,7 @@ export default function Navbar() {
                 </button>
             </div>
             <div className={(isOpen ? "block" : "hidden") + " w-full flex-grow lg:flex lg:items-center lg:w-auto"}>
-                <div className="text-sm lg:flex-grow lg:flex lg:gap-8">
+                <div className="text-sm lg:flex-grow lg:flex lg:gap-8 lg:items-center">
                     <Link href="/about" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
                         <span className={router.pathname === "/about" ? "text-primary" : ""}>Sobre nós</span>
                     </Link>
@@ -40,16 +74,46 @@ export default function Navbar() {
                     <Link href="/contact" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
                         <span className={router.pathname === "/contact" ? "text-primary" : ""}>Contacto</span>
                     </Link>
-                    <a href="https://www.change.org/p/ban-unpaid-internships" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
-                        <span>#BanUnpaidInternships</span>
-                    </a>
-                    <Link href="/events/fishing" className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary">
-                        <span className={router.pathname === "/events/fishing" ? "text-primary" : ""}>Evento Pesca</span>
-                    </Link>
+                    {/* dropdown menu  only on hover */}
+                    <div className="block lg:relative mt-4 lg:inline-block lg:mt-0 text-left">
+                        <div>
+                            <button type="button" className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-black text-sm font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 dark:focus:ring-white" id="options-menu" aria-haspopup="true" aria-expanded="true" onMouseEnter={() => showDropdown("")} onMouseLeave={() => hideDropdown("")} onClick={() => toggleDropdown("events")}>
+                                <span className="mr-1">Eventos</span>
+                                <FontAwesomeIcon icon={faArrowDown} className="h-5 w-5 align-bottom"/>
+                            </button>
+                        </div>
+                        <div className={(shouldDropdownBeOpen("events") ? "block" : "hidden") + " origin-top-right relative lg:absolute left-0 mt-2 rounded-md shadow-lg bg-white dark:bg-black ring-1 ring-black ring-opacity-5 focus:outline-none"} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                            <div className="py-1" role="none">
+                                <Link href="/events/fishing" className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white" role="menuitem">
+                                    Evento Pesca
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                    {/* dropdown menu  only on hover */}
+                    <div className="block lg:relative mt-4 lg:inline-block lg:mt-0 text-left" onMouseEnter={() => showDropdown("")} onMouseLeave={() => hideDropdown("")} onClick={() => toggleDropdown("projects")}>
+                        <div>
+                            <button type="button" className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-black text-sm font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 dark:focus:ring-white" id="options-menu" aria-haspopup="true" aria-expanded="true" >
+                                <span className="mr-1">Proxectos</span>
+                                <FontAwesomeIcon icon={faArrowDown} className="h-5 w-5 align-bottom"/>
+                            </button>
+                        </div>
+                        <div className={(shouldDropdownBeOpen("projects") ? "block" : "hidden") + " origin-top-right relative lg:absolute left-0 mt-2 rounded-md shadow-lg bg-white dark:bg-black ring-1 ring-black ring-opacity-5 focus:outline-none"} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                            {Object.keys(projects).map((p) =>
+                            <div className="py-1" role="none">
+                                <Link href={"/projects/" + projects[p]} className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white" role="menuitem">
+                                    {p}
+                                </Link>
+                            </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
                 <div>
-                    <Link href="/join" className="inline-block text-sm px-4 py-2 leading-none border rounded transition text-black border-black dark:border-white dark:hover:border-transparent dark:text-white border-opacity-30 hover:border-transparent hover:text-white hover:bg-primary mt-4 lg:mt-0">
-                        Inscribirme
+                    <Link href="/join" className="block lg:relative mt-4 lg:inline-block lg:mt-0">
+                        <ButtonComponent className="w-full">
+                            Inscribirme
+                        </ButtonComponent>
                     </Link>
                 </div>
             </div>

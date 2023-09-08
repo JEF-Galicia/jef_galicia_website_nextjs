@@ -15,6 +15,14 @@ export default function Fishing() {
         description="Información e métodos de contacto cos nosos membros"
       />
       <BoxComponent>
+        <div className="flex flex-col justify-start mb-6 w-full bg-opacity-30 hover:bg-opacity-100 bg-primary text-white font-semibold text-sm px-6 py-3 leading-none border rounded transition border-black dark:border-white dark:hover:border-transparent dark:text-white border-opacity-30  ">
+          <h1 className='text-xl mb-4'>
+            Este evento finalizou.
+          </h1>
+          <p>
+            A información desta páxina ofrécese a modo de referencia, pero xa non está actualizada.
+          </p>
+        </div>
         <div className="grid grid-cols-3 gap-12 px-4 md:px-16 pb-6 items-center">
           <Image src={EUCofundedLogo} alt="Co-funded by the EU" className="" />
           <Image src={JEFEuropeLogo} alt="JEF Europa" className="" />
@@ -26,6 +34,7 @@ export default function Fishing() {
         {/*<div className="h-22 w-100 flex mx-0 mb-4 flex-col place-items-center rounded">
           <Image src={imagenEvento} alt="Imaxe do evento" className="rounded" />
         </div>*/}
+        {/*
         <div className="flex justify-start w-full mb-6">
           <a
             className="w-full md:w-full flex-grow"
@@ -36,6 +45,7 @@ export default function Fishing() {
             </ButtonComponent>
           </a>
         </div>
+      */}
 
         <h2 className=''><span className="font-semibold">Cando?</span></h2>
         <div className="w-full md:rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-0 bg-opacity-0 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b py-4 lg:py-6 px-4 lg:px-10 block focus:outline-none focus:ring-4 mb-6 mt-3">
