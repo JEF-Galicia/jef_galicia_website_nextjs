@@ -12,11 +12,11 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState([]);
     const router = useRouter();
-    const {globalContext} = useContext(GlobalContext);
+    const { globalContext } = useContext(GlobalContext);
 
     const showDropdown = (name) => {
         // if the dropdown is closed, open it
-        if (! isDropdownOpen.includes(name)) {
+        if (!isDropdownOpen.includes(name)) {
             setIsDropdownOpen([...isDropdownOpen, name]);
         }
     }
@@ -40,9 +40,15 @@ export default function Navbar() {
         return isDropdownOpen.includes(name);
     }
 
-    const projects = {'ChatMadariaga': 'chatmadariaga',
-'Banco por Europa': 'bench_for_europe',
-'OpportEUnities': 'opporteunities'}
+    const projects = {
+        'ChatMadariaga': 'chatmadariaga',
+        'Banco por Europa': 'bench_for_europe',
+        'OpportEUnities': 'opporteunities',
+        'EUlections': 'eulections',
+        'D&I en JEF Europa': 'di_jef_europe',
+        'Visita UE': 'eu_visit',
+        'Excursión JEF-AECP': 'jef_aecp_excursion',
+    }
 
     return (
         <nav className="sticky z-50 top-0 flex items-center justify-between flex-wrap p-6 backdrop-blur bg-white dark:bg-black bg-opacity-10 dark:bg-opacity-30 transition border-b border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50">
@@ -79,7 +85,7 @@ export default function Navbar() {
                         <div>
                             <button type="button" className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-black text-sm font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 dark:focus:ring-white" id="options-menu" aria-haspopup="true" aria-expanded="true" onMouseEnter={() => showDropdown("")} onMouseLeave={() => hideDropdown("")} onClick={() => toggleDropdown("events")}>
                                 <span className="mr-1">Eventos</span>
-                                <FontAwesomeIcon icon={faArrowDown} className="h-5 w-5 align-bottom"/>
+                                <FontAwesomeIcon icon={faArrowDown} className="h-5 w-5 align-bottom" />
                             </button>
                         </div>
                         <div className={(shouldDropdownBeOpen("events") ? "block" : "hidden") + " origin-top-right relative lg:absolute left-0 mt-2 rounded-md shadow-lg bg-white dark:bg-black ring-1 ring-black ring-opacity-5 focus:outline-none"} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
@@ -95,16 +101,16 @@ export default function Navbar() {
                         <div>
                             <button type="button" className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white dark:bg-black text-sm font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 dark:focus:ring-white" id="options-menu" aria-haspopup="true" aria-expanded="true" >
                                 <span className="mr-1">Proxectos</span>
-                                <FontAwesomeIcon icon={faArrowDown} className="h-5 w-5 align-bottom"/>
+                                <FontAwesomeIcon icon={faArrowDown} className="h-5 w-5 align-bottom" />
                             </button>
                         </div>
                         <div className={(shouldDropdownBeOpen("projects") ? "block" : "hidden") + " origin-top-right relative lg:absolute left-0 mt-2 rounded-md shadow-lg bg-white dark:bg-black ring-1 ring-black ring-opacity-5 focus:outline-none"} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                             {Object.keys(projects).map((p) =>
-                            <div className="py-1" role="none">
-                                <Link href={"/projects/" + projects[p]} className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white" role="menuitem">
-                                    {p}
-                                </Link>
-                            </div>
+                                <div className="py-1" role="none">
+                                    <Link href={"/projects/" + projects[p]} className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white" role="menuitem">
+                                        {p}
+                                    </Link>
+                                </div>
                             )}
                         </div>
                     </div>
