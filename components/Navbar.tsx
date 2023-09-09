@@ -107,7 +107,7 @@ export default function Navbar() {
                         <div className={(shouldDropdownBeOpen("projects") ? "block" : "hidden") + " origin-top-right relative lg:absolute left-0 mt-2 rounded-md shadow-lg bg-white dark:bg-black ring-1 ring-black ring-opacity-5 focus:outline-none"} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                             {Object.keys(projects).map((p) =>
                                 <div className="py-1" role="none">
-                                    <Link href={"/projects/" + projects[p]} className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white" role="menuitem">
+                                    <Link href={"/projects/" + projects[p]} className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white" role="menuitem" key={p}>
                                         {p}
                                     </Link>
                                 </div>
