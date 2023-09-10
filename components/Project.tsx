@@ -29,11 +29,11 @@ export default function ProjectComponent(props) {
                     {props.name}
                 </h1>
                 {props.image &&
-                (<div className="h-22 flex mx-0 mb-4 flex-col place-items-center rounded">
-                    <Image src={props.image} alt={"Imaxe descritiva do proxecto " + props.name} className="rounded" />
+                (<div className="h-22 flex mx-0 mb-4 flex-col place-items-center rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-0 bg-opacity-0 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 last:border-b p-0 focus:outline-none focus:ring-4">
+                    {props.image}
                 </div>)
                 }
-                <p className="w-full md:rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-0 bg-opacity-0 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b py-4 lg:py-6 px-4 lg:px-10 block focus:outline-none focus:ring-4 mb-6 mt-3">
+                <p className="w-full md:rounded-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-0 bg-opacity-0 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 last:border-b py-4 lg:py-6 px-4 lg:px-10 block focus:outline-none focus:ring-4 mb-6 mt-3">
                     {props.description}
                 </p>
         {props.email && (<div className="flex justify-start w-full mb-6">
