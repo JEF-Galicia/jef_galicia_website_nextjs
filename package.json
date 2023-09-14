@@ -7,11 +7,14 @@
   "scripts": {
     "dev": "next",
     "dev:watch": "next-remote-watch ./posts",
-    "build": "next build",
+    "build": "npm run i18n && next build",
     "postbuild": "next-sitemap",
     "start": "next start",
     "export": "next build && next export",
-    "lint": "next lint"
+    "lint": "next lint",
+    "extract:i18n": "formatjs extract '{pages,components,sections}/**/*.{js,ts,tsx}' --format simple --id-interpolation-pattern '[sha512:contenthash:base64:6]' --out-file content/locales/gl.json",
+    "compile:i18n": "formatjs compile-folder --ast --format simple content/locales content/compiled-locales",
+    "i18n": "npm run extract:i18n && npm run compile:i18n"
   },
   "dependencies": {
     "@9gustin/react-notion-render": "^3.11.2",
@@ -38,11 +41,14 @@
     "react-cookie-consent": "^8.0.1",
     "react-dom": "^18.2.0",
     "react-fontawesome": "^1.7.1",
+    "react-intl": "^6.4.6",
     "remark-gfm": "^3.0.1",
     "sass": "^1.62.1"
   },
   "devDependencies": {
+    "@formatjs/cli": "^6.1.5",
     "autoprefixer": "^10.4.0",
+    "babel-plugin-formatjs": "^10.5.5",
     "eslint": "<9.0.0",
     "eslint-config-next": "^13.2.1",
     "eslint-config-prettier": "^8.3.0",

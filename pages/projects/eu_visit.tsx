@@ -3,12 +3,13 @@ import BoxComponent from '../../components/Box';
 import Image from 'next/image';
 import proj_img from '../../public/EU_visit.jpeg';
 import ProjectComponent from '../../components/Project';
+import { FormattedMessage } from 'react-intl';
 
 export default function Project() {
   return (
     <ProjectComponent
-      name="Visita de JEF Galicia a las instituciones europeas"
-      description="JEF Galicia ofrecerá a sus socios la posibilidad de visitar las instituciones europeas en Bruselas para conocer su trabajo y mejorar sus oportunidades laborales, a través de los programas de financiamiento de la UE."
+      name={<FormattedMessage defaultMessage="Visita de JEF Galicia a las instituciones europeas"></FormattedMessage>}
+      description={<FormattedMessage defaultMessage="JEF Galicia ofrecerá a sus socios la posibilidad de visitar las instituciones europeas en Bruselas para conocer su trabajo y mejorar sus oportunidades laborales, a través de los programas de financiamiento de la UE."></FormattedMessage>}
       email="eu.institutional.visit@projects.jef.gal"
       image={
         <>
