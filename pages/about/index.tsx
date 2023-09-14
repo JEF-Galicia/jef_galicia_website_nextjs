@@ -14,6 +14,7 @@ import Image from 'next/image';
 import { useContext } from 'react';
 import { GlobalContext } from '../../utils/context';
 import { NextSeo } from 'next-seo';
+import { FormattedMessage } from 'react-intl';
 
 type IndexProps = {
     users: UserObjectResponse[];
@@ -42,10 +43,10 @@ export default function Index({ users }: IndexProps) {
             </h1>
     <button type="submit" className='inline-block text-sm px-4 py-2 leading-none border rounded transition text-black border-black dark:border-white dark:hover:border-transparent dark:text-white border-opacity-30 hover:border-transparent hover:text-white hover:bg-primary mt-4 lg:mt-0'>{'Inscribirme 💌'}</button>*/}
             <h1 className="text-3xl text-center mb-6">
-                Sobre nós
+                <FormattedMessage defaultMessage="Sobre nós" />
             </h1>
             <p className="text-center mb-12">
-                Somos un equipo de persoas activas que traballamos por unha Europa máis unida.
+                <FormattedMessage defaultMessage="Somos un equipo de persoas activas que traballamos por unha Europa máis unida." />
             </p>
             <ul className="w-full">
                 {users.map((user) => (
