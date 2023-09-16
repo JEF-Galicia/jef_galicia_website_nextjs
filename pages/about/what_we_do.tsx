@@ -6,15 +6,19 @@ import image2 from '../../public/Speaking_In_Library.jpg';
 import image3 from '../../public/Italy_Congress.jpg';
 import image4 from '../../public/EU_Handshake.jpg';
 import Link from "next/link";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 
 export default function WhatWeDo() {
+    const intl = useIntl();
     return (
         <>
-            <NextSeo
-                title="Que facemos"
-                description="As actividades e iniciativas de JEF Galicia"
-            />
+      <NextSeo
+        title={intl.formatMessage({ defaultMessage: 'Que facemos' })}
+        description={intl.formatMessage({
+          defaultMessage:
+            'As actividades e iniciativas de JEF Galicia',
+        })}
+      />
             <BoxComponent>
                 <h1 className='text-3xl font-semibold my-6'><FormattedMessage defaultMessage="Que facemos"/></h1>
                 <div className="h-22 flex mx-0 mb-4 flex-col place-items-center rounded">

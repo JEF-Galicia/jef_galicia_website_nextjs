@@ -14,7 +14,7 @@ export default function Project() {
       image={
         <>
           <Image src={proj_img} alt={"Imaxe descritiva do proxecto"} className="rounded-lg rounded-b-none" />
-          <div className='py-2 text-sm'>Imaxe xerada empregando IA</div>
+          <div className='py-2 text-sm'><FormattedMessage defaultMessage="Imaxe xerada empregando IA"/></div>
         </>
       }
       >

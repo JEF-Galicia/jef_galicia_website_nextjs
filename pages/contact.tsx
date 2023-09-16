@@ -1,13 +1,17 @@
 import { NextSeo } from 'next-seo';
 import BoxComponent from '../components/Box';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export default function Contact() {
+  const intl = useIntl();
   return (
     <>
       <NextSeo
-        title="Contacto"
-        description="Información e métodos de contacto cos nosos membros"
+        title={intl.formatMessage({ defaultMessage: 'Contacto' })}
+        description={intl.formatMessage({
+          defaultMessage:
+            'Información e métodos de contacto cos nosos socios',
+        })}
       />
       <BoxComponent>
         <h1 className="text-3xl font-semibold mb-6"><FormattedMessage defaultMessage="Contacta con nós" id='contact-us' /></h1>

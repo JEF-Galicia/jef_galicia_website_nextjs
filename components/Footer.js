@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../utils/context";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faFacebookSquare, faInstagram, faInstagramSquare, faLinkedin, faLinkedinIn, faTwitter, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
+import { FormattedMessage } from 'react-intl';
 
 const sunIcon = (
   <svg
@@ -101,7 +102,7 @@ export default function Footer() {
         </a>
       </div>
       <p className="uppercase mb-3 opacity-60 text-xs">
-        {`© ${new Date().getFullYear()}, JEF Galicia. Todos os dereitos reservados.`}
+        {`© ${new Date().getFullYear()}, JEF Galicia.`}
       </p>
       <ThemeSwitcher />
     </footer>

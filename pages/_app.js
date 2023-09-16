@@ -31,12 +31,14 @@ function MyApp({ Component, pageProps }) {
 
   const messages = useMemo(() => {
     switch (shortLocale) {
+      case 'en':
+        return English;
       case 'es':
         return Spanish;
       case 'gl':
         return Galician;
       default:
-        return English;
+        return Spanish;
     }
   }, [shortLocale]);
 

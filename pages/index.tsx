@@ -13,6 +13,7 @@ import { any } from 'cypress/types/bluebird';
 import { NextSeo } from 'next-seo';
 import imgTransparenteLogo from '../public/Main_Isotype.png';
 import Image from 'next/image';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 type IndexProps = {
   posts: Post[];
@@ -28,22 +29,28 @@ export async function getStaticProps() {
     console.error(e);
   }
 
-  //const posts = getPosts();
+  // temporal fix - empty the posts array
+  posts = [];
+
   const globalData = getGlobalData();
 
   return { props: { posts, globalData }, revalidate: 360 };
 }
 
 export default function Index({ posts, globalData }: IndexProps) {
+  const intl = useIntl();
   return (
     <>
       <NextSeo
-        title="Inicio"
-        description="Somos unha asociación sen ánimo de lucro adicada ao fomento da participación da xuventude galega na construción dunha Europa federal, a través da organización de actividades e campañas de sensibilización e formación."
+        title={intl.formatMessage({ defaultMessage: 'Inicio' })}
+        description={intl.formatMessage({
+          defaultMessage:
+            'Somos unha asociación sen ánimo de lucro adicada ao fomento da participación da xuventude galega na construción dunha Europa federal, a través da organización de actividades e campañas de sensibilización e formación.',
+        })}
       />
       <Header />
       <main className="w-full">
-        <Image src={imgTransparenteLogo} alt="" className="rounded" style={{opacity: 0, height: 1, width:1, position: 'absolute'}} />
+        <Image src={imgTransparenteLogo} alt="JEF Galicia Logo" className="rounded" style={{opacity: 0, height: 1, width:1, position: 'absolute'}} />
         <h1 className="text-3xl lg:text-5xl text-center mb-12">
           {globalData.blogTitle}
         </h1>
