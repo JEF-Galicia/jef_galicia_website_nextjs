@@ -15,6 +15,7 @@ import { useContext } from 'react';
 import { GlobalContext } from '../../utils/context';
 import { NextSeo } from 'next-seo';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { getGoogleUsers } from '../../api/gcloud';
 
 type IndexProps = {
   users: UserObjectResponse[];
@@ -29,6 +30,8 @@ export async function getStaticProps() {
   } catch (e) {
     console.error(e);
   }
+
+  await getGoogleUsers();
 
   return { props: { users }, revalidate: 86400 };
 }
