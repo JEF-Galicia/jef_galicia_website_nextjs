@@ -30,7 +30,7 @@ export async function getStaticProps() {
   }
 
   // temporal fix - empty the posts array
-  posts = [];
+  //posts = [];
 
   const globalData = getGlobalData();
 
