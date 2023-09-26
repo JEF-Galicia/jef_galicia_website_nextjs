@@ -136,7 +136,7 @@ export default function Subscribe() {
           />
         </p>
 
-        <BoxComponent>
+        <BoxComponent className='mt-6'>
           {message ? (
             message
           ) : (
