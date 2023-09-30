@@ -42,7 +42,7 @@ export default function ProjectComponent(props) {
             href={"mailto:" + props.email}
           >
             <ButtonComponent className="w-full bg-opacity-30 hover:bg-opacity-100 bg-primary text-white">
-              Contacta co equipo ({props.email})
+              {props.email}
             </ButtonComponent>
           </a>
         </div>)}
