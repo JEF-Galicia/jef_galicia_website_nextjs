@@ -119,19 +119,21 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
                         <h1 className="text-3xl font-semibold">
                             {user.name.fullName}
                         </h1>
-                        {teams.length > 0 && (
-                            <ul>
-                                {user.orgUnitPath === '/Junta Directiva' && (
+                        <ul>
+                            {
+                                user.orgUnitPath === '/Junta Directiva' && (
                                     <li><FormattedMessage defaultMessage="Integrante da Xunta Directiva" /></li>
-                                )}
-                                {teams.map(team =>
+                                )
+                            }
+                            {teams.length > 0 && (
+                                teams.map(team =>
                                     <li key={team.id}><Link href={'/about/teams/' + team.email} >
                                         {team.name} Manager
                                     </Link>
                                     </li>
-                                )}
-                            </ul>
-                        )}
+                                )
+                            )}
+                        </ul>
                     </div>
                 </div>
                 {user.customSchemas?.['Website']?.['Introduction'] &&
@@ -155,7 +157,7 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
                     <dd><FormattedDate value={user.creationTime} /></dd>
                     <dt className='font-semibold float-left mr-4'><FormattedMessage defaultMessage="Linguas de uso" /></dt>
                     <dd>
-                        {user.languages ? user.languages.map(l => (l.languageCode as string).toUpperCase()).join(', ') : 'Ningunha'}
+                        {user.languages ? user.languages.map(l => (l.languageCode as string).toUpperCase()).join(', ') : <></>}
                     </dd>
                 </dl>
                 {projects.length > 0 &&
