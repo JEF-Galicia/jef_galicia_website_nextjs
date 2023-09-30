@@ -42,6 +42,7 @@ export async function getStaticProps(context) {
     // get all the memberships of the user
     const memberships = await GoogleDirectory.members.list({
         groupKey: context.params.email,
+        includeDerivedMembership: true,
     }).then((res) => res.data);
 
     const photos = await Promise.all(memberships.members.map((memb) =>
@@ -54,13 +55,14 @@ export async function getStaticProps(context) {
         })
     ));
 
-    const users = await Promise.all(memberships.members.map((memb) =>
+    const users = await Promise.all(memberships.members.filter(m => m.type === 'USER').map((memb) =>
         GoogleDirectory.users.get({
             userKey: memb.email,
-            //projection: 'full',
         }).then((res) => {
             return res.data;
         }).catch((e) => {
+            console.error('banana:', e);
+            console.error(memb);
             return null;
         })
     ));
@@ -105,19 +107,23 @@ export default function MemberPage({ group, memberships, photos, users }: { grou
                     <div>
                         <h2 className='text-2xl font-semibold mb-2'><FormattedMessage defaultMessage="Persoas integrantes" /></h2>
                         <ul>
-                            {memberships.members.map(memb =>
-                                <li
-                                    key={memb.email}
-                                    className="md:first:rounded-t-lg md:last:rounded-b-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b hover:border-b hovered-sibling:border-t-0"
-                                    onClick={(e) => {
-                                        router.push('/about/members/' + memb.email);
-                                    }}
-                                >
-                                    <MemberCard
-                                        photo={photos.find((p) => p && p.primaryEmail === memb.email)}
-                                        user={users.find((u) => u && u.primaryEmail === memb.email)}
-                                    ></MemberCard>
-                                </li>
+                            {memberships.members.map(memb => {
+                                const user = users.find((u) => u && u.primaryEmail === memb.email);
+                                return (user ?
+                                    <li
+                                        key={memb.email}
+                                        className="md:first:rounded-t-lg md:last:rounded-b-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b hover:border-b hovered-sibling:border-t-0"
+                                        onClick={(e) => {
+                                            router.push('/about/members/' + memb.email);
+                                        }}
+                                    >
+                                        <MemberCard
+                                            photo={photos.find((p) => p && p.primaryEmail === memb.email)}
+                                            user={user}
+                                        ></MemberCard>
+                                    </li>
+                                    : <></>)
+                            }
                             )}
                         </ul>
                     </div>

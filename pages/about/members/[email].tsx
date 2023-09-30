@@ -46,7 +46,7 @@ export async function getStaticProps(context) {
         domain: 'jef.gal',
         userKey: context.params.email,
     }).then((res) => {
-        return res.data.groups;
+        return res.data.groups ?? [];
     });
 
     const projects = await GoogleDirectory.groups.list({
