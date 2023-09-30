@@ -127,7 +127,7 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
                             }
                             {teams.length > 0 && (
                                 teams.map(team =>
-                                    <li key={team.id}><Link href={'/about/teams/' + team.email} >
+                                    <li key={team.id}><Link href={'/about/teams/' + team.email} className='underline text-blue-800 dark:text-blue-200 opacity-85 hover:opacity-100 transition' >
                                         {team.name} Manager
                                     </Link>
                                     </li>
@@ -168,7 +168,10 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
                                 <div key={proj.id}>
                                     <dt className='font-semibold float-left mr-4'>{proj.name}</dt>
                                     <dd>
-                                        {projectMemberships[proj.email].role.toLocaleLowerCase()}
+                                        {
+                                            // Role in sentence case
+                                            projectMemberships[proj.email].role.charAt(0).toUpperCase() + projectMemberships[proj.email].role.slice(1).toLowerCase()
+                                        }
                                     </dd>
                                 </div>
                             )}

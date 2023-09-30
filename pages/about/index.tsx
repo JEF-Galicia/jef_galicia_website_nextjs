@@ -24,6 +24,8 @@ type IndexProps = {
   //users: UserObjectResponse[];
   users: admin_directory_v1.Schema$User[];
   photos: admin_directory_v1.Schema$UserPhoto[];
+  groups: admin_directory_v1.Schema$Groups;
+  memberships: { [x: string]: admin_directory_v1.Schema$Members };
 };
 
 export async function getStaticProps() {
@@ -62,10 +64,29 @@ export async function getStaticProps() {
     })
   ));
 
-  return { props: { users, photos }, revalidate: 14400 }; // revalidate every 4 hours
+  const groups = await GoogleDirectory.groups.list({
+    domain: 'teams.jef.gal',
+  }).then((res) => {
+    return res.data;
+  });
+
+  const memberships = await Promise.all(groups.groups.map(async (g) => ({
+    [g.id]: await GoogleDirectory.members.list({
+      groupKey: g.email,
+      includeDerivedMembership: true,
+    }).then((res) => res.data)
+  }))).then((res) => {
+    return res.reduce((acc, membership) => {
+      return { ...acc, ...membership }; // Merge all the objects into one
+    }
+      , {});
+  }
+  );
+
+  return { props: { users, photos, groups, memberships }, revalidate: 14400 }; // revalidate every 4 hours
 }
 
-export default function Index({ users, photos }: IndexProps) {
+export default function Index({ users, photos, memberships, groups }: IndexProps) {
   const intl = useIntl();
   const router = useRouter();
 
@@ -88,17 +109,22 @@ export default function Index({ users, photos }: IndexProps) {
         <FormattedMessage defaultMessage="Somos un equipo de persoas activas que traballamos por unha Europa máis unida." />
       </p>
       <ul className="w-full">
-        {users.filter(u => !u.suspended).sort((u1, u2) => new Date(u1.creationTime).getTime() - new Date(u2.creationTime).getTime()).map((user) => (
-          <li
-            key={user.id}
-            className="md:first:rounded-t-lg md:last:rounded-b-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b hover:border-b hovered-sibling:border-t-0"
-          //onClick={(e) => {
-          //  router.push('/about/members/' + user.primaryEmail);
-          //}}
-          >
-            <MemberCard user={user} photo={photos.find(p => p && p.primaryEmail === user.primaryEmail)}></MemberCard>
-          </li>
-        ))}
+        {users.filter(u => !u.suspended).sort((u1, u2) => new Date(u1.creationTime).getTime() - new Date(u2.creationTime).getTime()).map((user) => {
+          const tagline = groups.groups.filter((group) => memberships[group.id]?.members?.find((memb) => memb.email === user.primaryEmail)).map((group) => group.name + ' Manager').join(', ');
+          return (
+            <li
+              key={user.id}
+              className="md:first:rounded-t-lg md:last:rounded-b-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b hover:border-b hovered-sibling:border-t-0"
+            //onClick={(e) => {
+            //  router.push('/about/members/' + user.primaryEmail);
+            //}}
+            >
+
+              <MemberCard user={user} photo={photos.find(p => p && p.primaryEmail === user.primaryEmail)}
+                tagline={tagline} />
+            </li>)
+        }
+        )}
       </ul>
     </main>
   );

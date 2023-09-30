@@ -11,9 +11,10 @@ type MemberCardProps = {
     //users: UserObjectResponse[];
     user: admin_directory_v1.Schema$User;
     photo: admin_directory_v1.Schema$UserPhoto;
+    tagline?: string;
 };
 
-export default function MemberCard({ user, photo }: MemberCardProps) {
+export default function MemberCard({ user, photo, tagline }: MemberCardProps) {
     const intl = useIntl();
     const router = useRouter();
 
@@ -36,11 +37,14 @@ export default function MemberCard({ user, photo }: MemberCardProps) {
                 }
             </div>
             <div className="grow">
-                <h2>{user.name.fullName}</h2>
+                <h2 className='font-semibold'>{user.name.fullName}</h2>
+                {tagline && (
+                    <p className=" text-base opacity-60 m-0 mt-2">{tagline}</p>
+                )}
                 {user.emails && (
                     <a
                         href={'mailto:' + user.primaryEmail}
-                        className="mt-3 text-lg opacity-60"
+                        className="text-base opacity-60"
                     >
                         {user.primaryEmail}
                     </a>
