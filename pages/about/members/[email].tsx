@@ -134,6 +134,12 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
                         )}
                     </div>
                 </div>
+                {user.customSchemas?.['Website']?.['Introduction'] &&
+                    <BoxComponent className="lg:px-6 py-6 lg:py-6 mb-4">
+                        <p className='m-0'>{user.customSchemas['Website']['Introduction']}
+                        </p>
+                    </BoxComponent>
+                }
                 {user.primaryEmail && (<div className="flex justify-start w-full mb-6">
                     <a
                         className="w-full md:w-full flex-grow"
