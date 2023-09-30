@@ -122,7 +122,7 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
                         {teams.length > 0 && (
                             <ul>
                                 {user.orgUnitPath === '/Junta Directiva' && (
-                                    <li>Integrante da Xunta Directiva</li>
+                                    <li><FormattedMessage defaultMessage="Integrante da Xunta Directiva" /></li>
                                 )}
                                 {teams.map(team =>
                                     <li key={team.id}><Link href={'/about/teams/' + team.email} >
@@ -155,7 +155,7 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
                     <dd><FormattedDate value={user.creationTime} /></dd>
                     <dt className='font-semibold float-left mr-4'><FormattedMessage defaultMessage="Linguas de uso" /></dt>
                     <dd>
-                        {user.languages ? user.languages.map(l => l.languageCode).join(', ') : 'Ningunha'}
+                        {user.languages ? user.languages.map(l => (l.languageCode as string).toUpperCase()).join(', ') : 'Ningunha'}
                     </dd>
                 </dl>
                 {projects.length > 0 &&
