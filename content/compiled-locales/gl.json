@@ -191,10 +191,22 @@
       "value": "é un proxecto que consiste en pintar bancos coa bandeira da Unión Europea, para promover a sensibilización sobre a Unión Europea."
     }
   ],
+  "G0XEDG": [
+    {
+      "type": 0,
+      "value": "está en JEF Galicia. Atopa nesta páxina a súa información e roles dentro da asociación, así como os seus datos de contacto."
+    }
+  ],
   "GdRWIP": [
     {
       "type": 0,
       "value": "Se planea realizar una excursión para nuestros socios a la Agencia Europea de Control de la Pesca en Vigo, para aprender sobre su funcionamiento y los retos que enfrentan en el sector pesquero, ya que Vigo es el puerto pesquero más grande de Europa y supone un pilar fundamental para la economía gallega."
+    }
+  ],
+  "I5HP8D": [
+    {
+      "type": 0,
+      "value": "Equipo"
     }
   ],
   "I9Cfn/": [
@@ -279,6 +291,12 @@
     {
       "type": 0,
       "value": "Por que unirte a nós?"
+    }
+  ],
+  "TvNuJ5": [
+    {
+      "type": 0,
+      "value": "Linguas de uso"
     }
   ],
   "UrM6/Q": [
@@ -401,6 +419,12 @@
       "value": "📍 Tes aquí a direción do Google Maps"
     }
   ],
+  "ekwZwp": [
+    {
+      "type": 0,
+      "value": "Data de unión"
+    }
+  ],
   "f7lYAs": [
     {
       "type": 0,
@@ -503,6 +527,12 @@
       "value": "A Federación JEF"
     }
   ],
+  "ui6YOc": [
+    {
+      "type": 0,
+      "value": "Aquí tes unha lista de todos os proxectos que temos en marcha. Se queres saber máis sobre algún deles, só tes que facer click no seu nome."
+    }
+  ],
   "v+vMQG": [
     {
       "type": 0,
@@ -549,6 +579,12 @@
     {
       "type": 0,
       "value": "Esperámoste! 🙌"
+    }
+  ],
+  "z/AsLB": [
+    {
+      "type": 0,
+      "value": "Persoas integrantes"
     }
   ]
 }

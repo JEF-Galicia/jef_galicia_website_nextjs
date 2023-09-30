@@ -11,33 +11,64 @@ import { getAllUsers, queryDatabase } from '../../api/query-database';
 import { any } from 'cypress/types/bluebird';
 import { UserObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import Image from 'next/image';
-import { useContext } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { GlobalContext } from '../../utils/context';
 import { NextSeo } from 'next-seo';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { getGoogleUsers } from '../../api/gcloud';
+import { FormattedDate, FormattedMessage, useIntl } from 'react-intl';
+import { GoogleDirectory } from '../../api/client';
+import { admin_directory_v1 } from 'googleapis';
+import { useRouter } from 'next/router';
+import MemberCard from '../../components/MemberCard';
 
 type IndexProps = {
-  users: UserObjectResponse[];
+  //users: UserObjectResponse[];
+  users: admin_directory_v1.Schema$User[];
+  photos: admin_directory_v1.Schema$UserPhoto[];
 };
 
 export async function getStaticProps() {
-  var users = [];
-  try {
-    users = (await getAllUsers()).results.filter(
-      (user) => user.type === 'person'
-    );
-  } catch (e) {
-    console.error(e);
+  //var users = [];
+  //try {
+  //  users = (await getAllUsers()).results.filter(
+  //    (user) => user.type === 'person'
+  //  );
+  //} catch (e) {
+  //  console.error(e);
+  //}
+
+  await GoogleDirectory.groups.list({
+    domain: 'jef.gal'
+  }).then((res) => {
+    return res.data.groups;
+  });
+
+  const users = await GoogleDirectory.users.list({
+    domain: 'jef.gal',
+    orderBy: 'GIVEN_NAME',
+    showDeleted: 'false',
+    //viewType: 'domain_public',
+  }).then((res) => {
+    return res.data.users;
   }
+  );
 
-  await getGoogleUsers();
+  const photos = await Promise.all(users.map((u) =>
+    GoogleDirectory.users.photos.get({
+      userKey: u.primaryEmail,
+    }).then((res) => {
+      return res.data;
+    }).catch((e) => {
+      return null;
+    })
+  ));
 
-  return { props: { users }, revalidate: 86400 };
+  return { props: { users, photos }, revalidate: 14400 }; // revalidate every 4 hours
 }
 
-export default function Index({ users }: IndexProps) {
+export default function Index({ users, photos }: IndexProps) {
   const intl = useIntl();
+  const router = useRouter();
+
   return (
     <main className="w-full">
       <NextSeo
@@ -57,35 +88,15 @@ export default function Index({ users }: IndexProps) {
         <FormattedMessage defaultMessage="Somos un equipo de persoas activas que traballamos por unha Europa máis unida." />
       </p>
       <ul className="w-full">
-        {users.map((user) => (
+        {users.filter(u => !u.suspended).sort((u1, u2) => new Date(u1.creationTime).getTime() - new Date(u2.creationTime).getTime()).map((user) => (
           <li
             key={user.id}
             className="md:first:rounded-t-lg md:last:rounded-b-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b hover:border-b hovered-sibling:border-t-0"
+          //onClick={(e) => {
+          //  router.push('/about/members/' + user.primaryEmail);
+          //}}
           >
-            <div className="py-6 lg:py-10 px-6 lg:px-16 focus:outline-none focus:ring-4 block md:flex gap-8 items-center">
-              <div className="mb-4 md:mb-0 md:basis-1/6 md:text-right">
-                {user.avatar_url && (
-                  <Image
-                    src={user.avatar_url}
-                    alt="avatar"
-                    width={64}
-                    height={64}
-                    className="rounded inline-block"
-                  ></Image>
-                )}
-              </div>
-              <div className="grow">
-                <h2>{user.name}</h2>
-                {user['person'] && user['person']['email'] && (
-                  <a
-                    href={'mailto:' + user['person']['email']}
-                    className="mt-3 text-lg opacity-60"
-                  >
-                    {user['person']['email']}
-                  </a>
-                )}
-              </div>
-            </div>
+            <MemberCard user={user} photo={photos.find(p => p && p.primaryEmail === user.primaryEmail)}></MemberCard>
           </li>
         ))}
       </ul>

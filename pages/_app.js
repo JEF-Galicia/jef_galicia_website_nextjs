@@ -50,7 +50,7 @@ function MyApp({ Component, pageProps }) {
         <GlobalContext.Provider value={{ globalContext: context, setContext }}>
           <Navbar />
           <Layout>
-            <main className="mt-24 lg:mt-36">
+            <main className="mt-24 lg:mt-36 min-w-full">
               <Component {...pageProps} />
             </main>
             <GradientBackground
