@@ -6,6 +6,8 @@ import { NextSeo } from 'next-seo';
 import { FormattedDate, FormattedMessage, useIntl } from 'react-intl';
 import { admin_directory_v1 } from 'googleapis';
 import { useRouter } from 'next/router';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type MemberCardProps = {
     //users: UserObjectResponse[];
@@ -25,7 +27,7 @@ export default function MemberCard({ user, photo, tagline }: MemberCardProps) {
             }}
         >
             <div className="mb-4 md:mb-0 md:basis-1/6 md:text-right shrink-0">
-                {photo && (
+                {photo ? (
                     <Image
                         src={'data:' + photo.mimeType + ';base64,' + photo.photoData.replace(/_/g, '/').replace(/-/g, '+')}
                         alt="avatar"
@@ -33,6 +35,11 @@ export default function MemberCard({ user, photo, tagline }: MemberCardProps) {
                         height={photo.height}
                         className="rounded inline-block"
                     ></Image>
+                ) : (
+                    // Generic icon of a person from Font Awesome
+                    <div className='bg-white dark:bg-gray-500 w-24 h-24 rounded flex items-center justify-center'>
+                    <FontAwesomeIcon icon={faUser} size="3x" className="rounded opacity-70 py-auto"></FontAwesomeIcon>
+                    </div>
                 )
                 }
             </div>
