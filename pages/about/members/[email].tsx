@@ -94,6 +94,9 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
     const router = useRouter();
     const intl = useIntl();
 
+    const locale = router.locale;
+    console.log(user);
+
     if (router.isFallback) {
         return <h1>Loading...</h1>
     }
@@ -109,7 +112,7 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
                     {photo &&
                         <Image
                             src={'data:' + photo.mimeType + ';base64,' + photo.photoData.replace(/_/g, '/').replace(/-/g, '+')}
-                            alt="avatar"
+                            alt={"Avatar - " + user.name.fullName}
                             width={photo.width}
                             height={photo.height}
                             className="rounded inline-block"
@@ -136,9 +139,22 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
                         </ul>
                     </div>
                 </div>
-                {user.customSchemas?.['Website']?.['Introduction'] &&
+                {(user.customSchemas?.['Website']?.['Introduction'] as {value: string}[] | undefined)?.filter((intro) => intro.value.startsWith('[' + locale.toUpperCase() + ']')).map((intro) =>
+                    <BoxComponent className="lg:px-6 py-6 lg:py-6 mb-4" key={intro.value}>
+                        <p className='m-0'>{intro.value.slice(4).trimStart()}
+                        </p>
+                    </BoxComponent>
+                )
+                }
+                {locale === 'en' && user.customSchemas?.['Website']?.['Introduction [EN]'] &&
                     <BoxComponent className="lg:px-6 py-6 lg:py-6 mb-4">
-                        <p className='m-0'>{user.customSchemas['Website']['Introduction']}
+                        <p className='m-0'>{user.customSchemas['Website']['Introduction [EN]']}
+                        </p>
+                    </BoxComponent>
+                }
+                {locale === 'gl' && user.customSchemas?.['Website']?.['Introduction [GL]'] &&
+                    <BoxComponent className="lg:px-6 py-6 lg:py-6 mb-4">
+                        <p className='m-0'>{user.customSchemas['Website']['Introduction [GL]']}
                         </p>
                     </BoxComponent>
                 }

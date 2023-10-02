@@ -24,7 +24,7 @@ export default function MemberCard({ user, photo, tagline }: MemberCardProps) {
                 router.push('/about/members/' + user.primaryEmail);
             }}
         >
-            <div className="mb-4 md:mb-0 md:basis-1/6 md:text-right">
+            <div className="mb-4 md:mb-0 md:basis-1/6 md:text-right shrink-0">
                 {photo && (
                     <Image
                         src={'data:' + photo.mimeType + ';base64,' + photo.photoData.replace(/_/g, '/').replace(/-/g, '+')}
