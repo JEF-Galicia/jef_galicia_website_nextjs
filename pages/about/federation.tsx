@@ -19,7 +19,7 @@ export default function Federation() {
           <FormattedMessage defaultMessage="A Federación JEF" />
         </h1>
         <p className="mb-6">
-          <FormattedMessage defaultMessage="A Federación das Xuventudes Europeas Federalistas (JEF, polas súas siglas en francés) é unha organización política que ten como obxectivo fomentar a participación e o compromiso da xuventude europea na construción dunha " />
+          <FormattedMessage defaultMessage="A Federación das Xuventudes Europeas Federalistas (JEF, polas súas siglas en francés) é unha organización política que ten como obxectivo fomentar a participación e o compromiso da xuventude europea na construción dunha " />{' '}
           <span className="font-semibold">
             <FormattedMessage defaultMessage="Europa máis unida e democrática" />
           </span>
@@ -31,7 +31,7 @@ export default function Federation() {
         </p>
 
         <p className="mb-12">
-          <FormattedMessage defaultMessage="No caso de JEF Galicia, a nosa labor concretízase no fomento da participación da xuventude galega na construción dunha Europa máis unida e democrática, a través da organización de " />
+          <FormattedMessage defaultMessage="No caso de JEF Galicia, a nosa labor concretízase no fomento da participación da xuventude galega na construción dunha Europa máis unida e democrática, a través da organización de " />{' '}
           <span className="font-semibold">
             <FormattedMessage defaultMessage="actividades e campañas de sensibilización e formación" />
           </span>

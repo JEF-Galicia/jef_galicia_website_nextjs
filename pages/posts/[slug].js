@@ -12,7 +12,6 @@ import Link from 'next/link';
 import ArrowIcon from '../../components/ArrowIcon';
 import CustomLink from '../../components/CustomLink';
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
 import Layout, { GradientBackground } from '../../components/Layout';
 
 // Custom components/renderers to pass to MDX.
@@ -36,7 +35,6 @@ export default function PostPage({
 }) {
   return (
     <Layout>
-      <Header name={globalData.name} />
       <article className="px-6 md:px-0">
         <header>
           <h1 className="text-3xl md:text-5xl dark:text-white text-center mb-12">

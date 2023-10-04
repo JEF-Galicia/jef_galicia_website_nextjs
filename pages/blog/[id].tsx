@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
 import Layout, { GradientBackground } from '../../components/Layout';
 import { getGlobalData } from '../../utils/global-data';
 
@@ -127,7 +126,7 @@ export default function PostPage({ post, blockChildren, globalData }: { post: Po
             />
             <main className="w-full">
                 <h1 className="text-3xl lg:text-5xl text-center mb-12">
-                    {globalData.blogTitle}
+                    JEF Galicia - Blog
                 </h1>
                 <BoxComponent>
                         {post.date && (

@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
 import Layout, { GradientBackground } from '../../components/Layout';
 import ArrowIcon from '../../components/ArrowIcon';
 import { getGlobalData } from '../../utils/global-data';
@@ -37,53 +36,56 @@ export async function getStaticProps() {
   //} catch (e) {
   //  console.error(e);
   //}
+  try {
 
-  await GoogleDirectory.groups.list({
-    domain: 'jef.gal'
-  }).then((res) => {
-    return res.data.groups;
-  });
+    await GoogleDirectory.groups.list({
+      domain: 'jef.gal'
+    }).then((res) => {
+      return res.data.groups;
+    });
 
-  const users = await GoogleDirectory.users.list({
-    domain: 'jef.gal',
-    orderBy: 'GIVEN_NAME',
-    showDeleted: 'false',
-    //viewType: 'domain_public',
-  }).then((res) => {
-    return res.data.users;
-  }
-  );
+    const users = await GoogleDirectory.users.list({
+      domain: 'jef.gal',
+      orderBy: 'GIVEN_NAME',
+      showDeleted: 'false',
+      //viewType: 'domain_public',
+    }).then((res) => {
+      return res.data.users;
+    }
+    );
 
-  const photos = await Promise.all(users.map((u) =>
-    GoogleDirectory.users.photos.get({
-      userKey: u.primaryEmail,
+    const photos = await Promise.all(users.map((u) =>
+      GoogleDirectory.users.photos.get({
+        userKey: u.primaryEmail,
+      }).then((res) => {
+        return res.data;
+      }).catch((e) => {
+        return null;
+      })
+    ));
+
+    const groups = await GoogleDirectory.groups.list({
+      domain: 'teams.jef.gal',
     }).then((res) => {
       return res.data;
-    }).catch((e) => {
-      return null;
-    })
-  ));
+    });
 
-  const groups = await GoogleDirectory.groups.list({
-    domain: 'teams.jef.gal',
-  }).then((res) => {
-    return res.data;
-  });
-
-  const memberships = await Promise.all(groups.groups.map(async (g) => ({
-    [g.id]: await GoogleDirectory.members.list({
-      groupKey: g.email,
-      includeDerivedMembership: true,
-    }).then((res) => res.data)
-  }))).then((res) => {
-    return res.reduce((acc, membership) => {
-      return { ...acc, ...membership }; // Merge all the objects into one
+    const memberships = await Promise.all(groups.groups.map(async (g) => ({
+      [g.id]: await GoogleDirectory.members.list({
+        groupKey: g.email,
+        includeDerivedMembership: true,
+      }).then((res) => res.data)
+    }))).then((res) => {
+      return res.reduce((acc, membership) => {
+        return { ...acc, ...membership }; // Merge all the objects into one
+      }
+        , {});
     }
-      , {});
+    );
+    return { props: { users, photos, groups, memberships }, revalidate: 14400 }; // revalidate every 4 hours
+  } catch (e) {
+    return { props: { users: [], photos: [], groups: [], memberships: [] }};
   }
-  );
-
-  return { props: { users, photos, groups, memberships }, revalidate: 14400 }; // revalidate every 4 hours
 }
 
 export default function Index({ users, photos, memberships, groups }: IndexProps) {
@@ -105,8 +107,11 @@ export default function Index({ users, photos, memberships, groups }: IndexProps
       <h1 className="text-3xl text-center mb-6">
         <FormattedMessage defaultMessage="Sobre nós" />
       </h1>
-      <p className="text-center mb-12">
+      <p className="text-center mb-6">
         <FormattedMessage defaultMessage="Somos un equipo de persoas activas que traballamos por unha Europa máis unida." />
+      </p>
+      <p className="text-center mb-12">
+        <FormattedMessage defaultMessage="Todas nós somos persoas voluntarias, cunha paixón compartida pola Unión Europea e Galicia. A nosa labor desinteresada busca promover unha sociedade máis aberta, igualitaria, libre, democrática e xusta." />
       </p>
       <ul className="w-full">
         {users.filter(u => !u.suspended).sort((u1, u2) => new Date(u1.creationTime).getTime() - new Date(u2.creationTime).getTime()).map((user) => {
