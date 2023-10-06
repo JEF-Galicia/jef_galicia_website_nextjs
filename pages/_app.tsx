@@ -1,45 +1,46 @@
-import '../styles/globals.css';
-import 'prismjs/themes/prism-tomorrow.css';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import { getGlobalData } from '../utils/global-data';
-import Layout, { GradientBackground } from '../components/Layout';
-import { GlobalContext } from '../utils/context';
-import { useContext, useState } from 'react';
-import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
-import SEO from '../next-seo.config';
-import { GoogleAnalytics } from 'nextjs-google-analytics';
-import styles from './styles.scss';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import { DefaultSeo } from 'next-seo';
-config.autoAddCss = false;
+import { useRouter } from 'next/router';
+import { GoogleAnalytics } from 'nextjs-google-analytics';
+import 'prismjs/themes/prism-tomorrow.css';
+import { useMemo, useState } from 'react';
 import CookieConsent, {
-  Cookies,
-  getCookieConsentValue,
+  getCookieConsentValue
 } from 'react-cookie-consent';
+import { FormattedMessage, IntlProvider } from 'react-intl';
+import { GoogleDirectory } from '../api/client';
+import Footer from '../components/Footer';
+import Layout, { GradientBackground } from '../components/Layout';
+import Navbar from '../components/Navbar';
 import English from '../content/compiled-locales/en.json';
 import Spanish from '../content/compiled-locales/es.json';
 import Galician from '../content/compiled-locales/gl.json';
-import { useRouter } from 'next/router';
-import { FormattedMessage, IntlProvider } from 'react-intl';
-import { useMemo } from 'react';
-import { GoogleDirectory } from '../api/client';
+import SEO from '../next-seo.config';
+import '../styles/globals.css';
+import { GlobalContext } from '../utils/context';
+config.autoAddCss = false;
 
 // getServerSideProps
 export async function getServerSideProps() {
   const teams = await GoogleDirectory.groups.list({
     domain: 'teams.jef.gal',
-  }).then((res) => res.data);
+  }).then((res) => res.data).catch(() => ({
+    groups: []
+  }));
 
   const projects = await GoogleDirectory.groups.list({
     domain: 'projects.jef.gal',
-  }).then((res) => res.data);
+  }).then((res) => res.data).catch(() => ({
+    groups: []
+  }));
 
   return {
     props: {
       teams,
       projects,
     },
+    revalidate: 14400
   };
 }
 
@@ -68,8 +69,8 @@ function MyApp({ Component, pageProps, teams, projects }) {
         {getCookieConsentValue() ? <GoogleAnalytics trackPageViews /> : <></>}
         <GlobalContext.Provider value={{ globalContext: context, setContext }}>
           <Navbar
-            projects={projects}
             teams={teams}
+            projects={projects}
           />
           <Layout>
             <main className="mt-24 lg:mt-36 min-w-full">

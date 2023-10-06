@@ -4,7 +4,7 @@ import { admin_directory_v1, Auth as GoogleAuth } from 'googleapis';
 const NOTION_API_KEY = process.env.NOTION_API_KEY ?? '';
 const GCP_CLIENT_EMAIL = process.env.GCP_CLIENT_EMAIL ?? '';
 const CGP_SUBJECT_IMPERSONATION_EMAIL = process.env.CGP_SUBJECT_IMPERSONATION_EMAIL ?? '';
-const GCP_PRIVATE_KEY = process.env.GCP_PRIVATE_KEY.split("\\n").join("\n") ?? '';
+const GCP_PRIVATE_KEY = (process.env.GCP_PRIVATE_KEY ?? '').split("\\n").join("\n") ?? '';
 
 export const notion = new NotionClient({ auth: NOTION_API_KEY });
 export const GoogleDirectory = new admin_directory_v1.Admin({

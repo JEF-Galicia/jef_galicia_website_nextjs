@@ -195,14 +195,14 @@ export default function Navbar({teams, projects}: {teams: admin_directory_v1.Sch
               aria-orientation="vertical"
               aria-labelledby="options-menu"
             >
-              {projects.groups.map((p) => (
+              {projects?.groups.map((p) => (
                 <div className="py-1" role="none" key={p.id}>
                   <Link
                     href={'/projects/' + p.email}
                     className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
                     role="menuitem"
                   >
-                    {projects[p.name]}
+                    {p.name}
                   </Link>
                 </div>
               ))}
