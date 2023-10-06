@@ -8,8 +8,9 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ButtonComponent from './Button';
 import { FormattedMessage } from 'react-intl';
+import { admin_directory_v1 } from 'googleapis';
 
-export default function Navbar() {
+export default function Navbar({teams, projects}: {teams: admin_directory_v1.Schema$Groups, projects: admin_directory_v1.Schema$Groups}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState([]);
   const router = useRouter();
@@ -43,18 +44,6 @@ export default function Navbar() {
 
   const { pathname, asPath, query } = router;
   // change just the locale and maintain all other route information including href's query
-
-  const projects = {
-    chatmadariaga: 'ChatMadariaga',
-    bench_for_europe: <FormattedMessage defaultMessage="Banco por Europa" />,
-    opporteunities: 'OpportEUnities',
-    eulections: 'EUlections',
-    di_jef_europe: <FormattedMessage defaultMessage="D&I en JEF Europa" />,
-    eu_visit: <FormattedMessage defaultMessage="Visita UE" />,
-    jef_aecp_excursion: (
-      <FormattedMessage defaultMessage="Excursión JEF-AECP" />
-    ),
-  };
 
   const events = {
     fishing: <FormattedMessage defaultMessage="Evento Pesca" />,
@@ -206,14 +195,14 @@ export default function Navbar() {
               aria-orientation="vertical"
               aria-labelledby="options-menu"
             >
-              {Object.keys(projects).map((p) => (
-                <div className="py-1" role="none" key={p}>
+              {projects.groups.map((p) => (
+                <div className="py-1" role="none" key={p.id}>
                   <Link
-                    href={'/projects/' + p}
+                    href={'/projects/' + p.email}
                     className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
                     role="menuitem"
                   >
-                    {projects[p]}
+                    {projects[p.name]}
                   </Link>
                 </div>
               ))}

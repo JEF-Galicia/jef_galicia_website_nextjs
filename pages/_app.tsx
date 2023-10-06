@@ -23,8 +23,27 @@ import Galician from '../content/compiled-locales/gl.json';
 import { useRouter } from 'next/router';
 import { FormattedMessage, IntlProvider } from 'react-intl';
 import { useMemo } from 'react';
+import { GoogleDirectory } from '../api/client';
 
-function MyApp({ Component, pageProps }) {
+// getServerSideProps
+export async function getServerSideProps() {
+  const teams = await GoogleDirectory.groups.list({
+    domain: 'teams.jef.gal',
+  }).then((res) => res.data);
+
+  const projects = await GoogleDirectory.groups.list({
+    domain: 'projects.jef.gal',
+  }).then((res) => res.data);
+
+  return {
+    props: {
+      teams,
+      projects,
+    },
+  };
+}
+
+function MyApp({ Component, pageProps, teams, projects }) {
   const [context, setContext] = useState({ name: 'JEF Galicia' });
   const { locale } = useRouter();
   const [shortLocale] = locale ? locale.split('-') : ['en'];
@@ -48,7 +67,10 @@ function MyApp({ Component, pageProps }) {
         <DefaultSeo {...SEO} />
         {getCookieConsentValue() ? <GoogleAnalytics trackPageViews /> : <></>}
         <GlobalContext.Provider value={{ globalContext: context, setContext }}>
-          <Navbar />
+          <Navbar
+            projects={projects}
+            teams={teams}
+          />
           <Layout>
             <main className="mt-24 lg:mt-36 min-w-full">
               <Component {...pageProps} />
