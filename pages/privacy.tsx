@@ -9,7 +9,7 @@ export default function Contact() {
                 description="Política de privacidad de JEF Galicia"
             />
             <BoxComponent>
-                <h1 className='text-3xl font-semibold mb-6'>Política de privacidad</h1>
+                <h1 className='text-3xl font-semibold mb-6'>Política de privacidad - JEF Galicia</h1>
                 <p>El sitio web jef.gal es propiedad de JEF Galicia, que es un controlador de datos de tus datos personales.</p>
                 <p>Hemos adoptado esta Política de privacidad, que determina cómo procesamos la información recopilada por jef.gal, que también proporciona las razones por las que debemos recopilar ciertos datos personales sobre ti. Por lo tanto, debes leer esta Política de privacidad antes de usar el sitio web de jef.gal.</p>
                 <p>Cuidamos tus datos personales y nos comprometemos a garantizar su confidencialidad y seguridad.</p>

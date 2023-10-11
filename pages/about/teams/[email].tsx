@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 
     return {
         paths: localizedRoutes,
-        fallback: false,
+        fallback: 'blocking',
     };
 }
 

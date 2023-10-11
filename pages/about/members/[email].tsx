@@ -30,7 +30,7 @@ export async function getStaticPaths() {
 
     return {
         paths: localizedRoutes,
-        fallback: false,
+        fallback: 'blocking',
     };
 }
 
@@ -95,7 +95,6 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
     const intl = useIntl();
 
     const locale = router.locale;
-    console.log(user);
 
     if (router.isFallback) {
         return <h1>Loading...</h1>
