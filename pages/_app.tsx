@@ -21,9 +21,8 @@ import '../styles/globals.css';
 import { GlobalContext } from '../utils/context';
 config.autoAddCss = false;
 
-// getServerSideProps
-export async function getServerSideProps() {
-  const teams = await GoogleDirectory.groups.list({
+export async function getInitialProps() {
+  /*const teams = await GoogleDirectory.groups.list({
     domain: 'teams.jef.gal',
   }).then((res) => res.data).catch(() => ({
     groups: []
@@ -33,14 +32,21 @@ export async function getServerSideProps() {
     domain: 'projects.jef.gal',
   }).then((res) => res.data).catch(() => ({
     groups: []
-  }));
+  }));*/
+
+  const teams = {
+    groups: []
+  };
+
+  const projects = {
+    groups: []
+  };
 
   return {
     props: {
       teams,
       projects,
     },
-    revalidate: 14400
   };
 }
 
@@ -69,8 +75,8 @@ function MyApp({ Component, pageProps, teams, projects }) {
         {getCookieConsentValue() ? <GoogleAnalytics trackPageViews /> : <></>}
         <GlobalContext.Provider value={{ globalContext: context, setContext }}>
           <Navbar
-            teams={teams}
-            projects={projects}
+            teams={teams ?? { groups: [] }}
+            projects={projects ?? { groups: [] }}
           />
           <Layout>
             <main className="mt-24 lg:mt-36 min-w-full">
