@@ -43,9 +43,11 @@ export async function getStaticProps(context) {
     const memberships = await GoogleDirectory.members.list({
         groupKey: context.params.email,
         includeDerivedMembership: true,
-    }).then((res) => res.data);
+    }).then((res) => res.data).catch(() => ({
+        members: []
+        }));
 
-    const photos = await Promise.all(memberships.members.map((memb) =>
+    const photos = await Promise.all(memberships.members?.map((memb) =>
         GoogleDirectory.users.photos.get({
             userKey: memb.email,
         }).then((res) => {
@@ -53,19 +55,18 @@ export async function getStaticProps(context) {
         }).catch((e) => {
             return null;
         })
-    ));
+    )).catch(() => ([]));
 
-    const users = await Promise.all(memberships.members.filter(m => m.type === 'USER').map((memb) =>
+    const users = await Promise.all(memberships?.members?.filter(m => m.type === 'USER').map((memb) =>
         GoogleDirectory.users.get({
             userKey: memb.email,
         }).then((res) => {
             return res.data;
         }).catch((e) => {
-            console.error('banana:', e);
             console.error(memb);
             return null;
         })
-    ));
+    )).catch(() => ([]));
 
     return { props: { group, memberships, photos, users }, revalidate: 14400 }; // revalidate every 4 hours
 }
@@ -103,11 +104,11 @@ export default function MemberPage({ group, memberships, photos, users }: { grou
                         </ButtonComponent>
                     </a>
                 </div>)}
-                {memberships.members.length > 0 &&
+                {memberships.members?.length > 0 &&
                     <div>
                         <h2 className='text-2xl font-semibold mb-2'><FormattedMessage defaultMessage="Persoas integrantes" /></h2>
                         <ul>
-                            {memberships.members.map(memb => {
+                            {memberships.members?.map(memb => {
                                 const user = users.find((u) => u && u.primaryEmail === memb.email);
                                 return (user ?
                                     <li

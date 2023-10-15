@@ -57,7 +57,7 @@ export async function getStaticProps(context) {
     });
 
     // get all the memberships of the user
-    const projectMemberships = await Promise.all(projects.map((project) => {
+    const projectMemberships = await Promise.all(projects?.map((project) => {
         return GoogleDirectory.members.get({
             groupKey: project.email,
             memberKey: context.params.email,

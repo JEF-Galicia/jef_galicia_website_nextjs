@@ -46,6 +46,7 @@ export default function Navbar({teams, projects}: {teams: admin_directory_v1.Sch
   // change just the locale and maintain all other route information including href's query
 
   const events = {
+    aecp_excursion: <FormattedMessage defaultMessage="Excursión AECP" />,
     fishing: <FormattedMessage defaultMessage="Evento Pesca" />,
   };
 
@@ -171,6 +172,7 @@ export default function Navbar({teams, projects}: {teams: admin_directory_v1.Sch
             </div>
           </div>
           {/* dropdown menu  only on hover */}
+          {/*
           <div
             className="block lg:relative mt-4 lg:inline-block lg:mt-0 text-left"
             onMouseEnter={() => showDropdown('')}
@@ -195,7 +197,7 @@ export default function Navbar({teams, projects}: {teams: admin_directory_v1.Sch
               aria-orientation="vertical"
               aria-labelledby="options-menu"
             >
-              {projects?.groups.map((p) => (
+              {projects?.groups?.map((p) => (
                 <div className="py-1" role="none" key={p.id}>
                   <Link
                     href={'/projects/' + p.email}
@@ -208,6 +210,7 @@ export default function Navbar({teams, projects}: {teams: admin_directory_v1.Sch
               ))}
             </div>
           </div>
+          */}
         </div>
         <div className='text-sm lg:flex-grow-0 lg:flex lg:gap-8 lg:items-center'>
           {/* dropdown menu  only on hover */}
