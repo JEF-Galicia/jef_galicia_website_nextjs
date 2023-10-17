@@ -11,6 +11,7 @@ import { queryDatabase } from '../api/query-database';
 import { any } from 'cypress/types/bluebird';
 import { NextSeo } from 'next-seo';
 import imgTransparenteLogo from '../public/Main_Isotype.png';
+import imgRecruitmentSquare from '../public/Promo_Recruitment_Square.png';
 import Image from 'next/image';
 import { FormattedDate, FormattedMessage, useIntl } from 'react-intl';
 import logoJef from '../public/Main_Imagetype_Bounded.svg';
@@ -50,6 +51,7 @@ export default function Index({ posts, globalData }: IndexProps) {
         })}
       />
       <Image src={imgTransparenteLogo} alt="JEF Galicia Logo" className="rounded" style={{ opacity: 0, height: 1, width: 1, position: 'absolute' }} />
+      <Image src={imgRecruitmentSquare} alt="JEF Galicia Promo" className="rounded" style={{ opacity: 0, height: 1, width: 1, position: 'absolute' }} />
       <header className="pb-12 w-full px-8">
         <div className="h-22 flex mb-4 flex-col place-items-center mx-0" >
           <Image src={logoJef} alt='JEF Galicia Logo - Xeración Europea Federalista Galicia' ></Image>
