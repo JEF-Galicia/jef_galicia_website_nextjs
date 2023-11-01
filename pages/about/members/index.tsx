@@ -11,6 +11,7 @@ import { admin_directory_v1 } from 'googleapis';
 import { useRouter } from 'next/router';
 import { GoogleDirectory } from '../../../api/client';
 import MemberCard from '../../../components/MemberCard';
+import ButtonComponent from '../../../components/Button';
 
 type IndexProps = {
   //users: UserObjectResponse[];
@@ -100,9 +101,14 @@ export default function Index({ users, photos, memberships, groups }: IndexProps
       <h1 className="text-3xl text-center mb-6">
         <FormattedMessage defaultMessage="Lista de membros" />
       </h1>
-      <p className="text-center mb-12">
+      <p className="text-center mb-6">
         <FormattedMessage defaultMessage="Estas somos nós: persoas voluntarias, activas e comprometidas coa construción dunha Europa máis unida. Coñécenos facendo click sobre o noso nome." />
       </p>
+      <Link href="/about/members/map">
+        <ButtonComponent className='w-full mb-12'>
+          <FormattedMessage defaultMessage="Onde estamos?" />
+        </ButtonComponent>
+      </Link>
       <ul className="w-full">
         {users.filter(u => !u.suspended).sort((u1, u2) => new Date(u1.creationTime).getTime() - new Date(u2.creationTime).getTime()).map((user) => {
           const tagline = groups.groups.filter((group) => memberships[group.id]?.members?.find((memb) => memb.email === user.primaryEmail)).map((group) => group.name + ' Manager').join(', ');
