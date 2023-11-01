@@ -87,7 +87,7 @@ export async function getStaticProps(context) {
         return null;
     });
 
-    return { props: { user, groups, photo, projects, teams, projectMemberships }, revalidate: 14400 }; // revalidate every 4 hours
+    return { props: { user, groups, photo, projects, teams, projectMemberships }, revalidate: 3600 }; // revalidate every hour
 }
 
 export default function MemberPage({ user, groups, photo, projects, teams, projectMemberships }: { user: admin_directory_v1.Schema$User, groups: admin_directory_v1.Schema$Group[], photo: admin_directory_v1.Schema$UserPhoto, projects: admin_directory_v1.Schema$Group[], teams: admin_directory_v1.Schema$Group[], projectMemberships: { [key: string]: admin_directory_v1.Schema$Member } }) {

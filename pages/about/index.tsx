@@ -82,7 +82,7 @@ export async function getStaticProps() {
         , {});
     }
     );
-    return { props: { users, photos, groups, memberships }, revalidate: 14400 }; // revalidate every 4 hours
+    return { props: { users, photos, groups, memberships }, revalidate: 3600 }; // revalidate every hour
   } catch (e) {
     return { props: { users: [], photos: [], groups: [], memberships: [] }};
   }

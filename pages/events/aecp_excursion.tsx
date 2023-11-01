@@ -13,12 +13,12 @@ export default function AECPExcursion() {
   return (
     <>
       <BoxComponent>
-        <div className="flex flex-col justify-start mb-6 w-full bg-opacity-100 hover:bg-opacity-100 bg-[#ff0000] text-white font-semibold text-sm px-6 py-3 leading-none border rounded transition border-black dark:border-white dark:hover:border-transparent dark:text-white border-opacity-30  ">
+        <div className="flex flex-col justify-start mb-6 w-full bg-opacity-30 hover:bg-opacity-100 bg-primary text-white font-semibold text-sm px-6 py-3 leading-none border rounded transition border-black dark:border-white dark:hover:border-transparent dark:text-white border-opacity-30  ">
           <h1 className='text-xl mb-4'>
-            <FormattedMessage defaultMessage="Últimas prazas!"/>
+            <FormattedMessage defaultMessage="Este evento finalizou."/>
           </h1>
           <p>
-            <FormattedMessage defaultMessage="Debido ao volume de inscricións recibido, non che podemos garantir unha praza na actividade. Realiza a túa inscrición a través do formulario habilitado e recibirás unha notificación pola nosa parte con antelación suficiente confirmando ou non a túa praza no evento."/>
+            <FormattedMessage defaultMessage="A información desta páxina ofrécese a modo de referencia, pero xa non está actualizada."/>
           </p>
         </div>
         {/*

@@ -133,6 +133,20 @@ export default function Navbar({teams, projects}: {teams: admin_directory_v1.Sch
               <FormattedMessage defaultMessage="Contacto" />
             </span>
           </Link>
+          
+          <Link
+            href="/projects"
+            className="block mt-4 lg:inline-block lg:mt-0 hover:text-primary"
+          >
+            <span
+              className={
+                router.pathname === '/projects' ? 'text-primary' : ''
+              }
+            >
+              <FormattedMessage defaultMessage="Proxectos" />
+            </span>
+          </Link>
+
           {/* dropdown menu  only on hover */}
           <div
             className="block lg:relative mt-4 lg:inline-block lg:mt-0 text-left"
