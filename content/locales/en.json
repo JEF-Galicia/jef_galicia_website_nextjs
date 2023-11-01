@@ -1,4 +1,7 @@
 {
+  "hr5D2f": "Members map",
+  "BXDDWP": "{address_type, select, work {Main location} other {Location}}",
+  "DghzWc": "Here you have a map with the addresses of the members of JEF Galicia who have provided one. If you want to know more about any of them or consult their members, you only have to click on them.",
   "We4H5L": "Here you have a list of all JEF Galicia's work teams. If you want to know more about any of them or consult their members, just click on its name.",
   "PvMf79": "{count, plural, one {# member} other {# members}}",
   "AORohd": "Teams",

@@ -13,6 +13,7 @@ export async function getStaticProps() {
         return res.data.groups;
     });
 
+    /*
     const memberships = await Promise.all(teams.map(async (g) => ({
         [g.id]: await GoogleDirectory.members.list({
             groupKey: g.email,
@@ -30,14 +31,12 @@ export async function getStaticProps() {
             , {});
     }
     );
-
-    console.log(teams);
-    console.log(memberships);
+    */
 
     return {
         props: {
             teams,
-            memberships,
+            memberships: {},
         },
         revalidate: 3600, // revalidate every hour
     };
@@ -60,7 +59,10 @@ export default function ProjectIndexPage({ teams, memberships }: { teams: admin_
                         {/* Show the number of members in each team */}
                         <p className='text-gray-500 dark:text-gray-400 mt-1'>
                             {/* Format plural: 1 membro, 2 membros, 3 membros, etc. */}
+                            {/*
                             <FormattedMessage defaultMessage="{count, plural, one {# membro} other {# membros}}" values={{ count: memberships[g.id]?.members?.length ?? 0 }} />
+                            */}
+                            <FormattedMessage defaultMessage="{count, plural, one {# membro} other {# membros}}" values={{ count: g.directMembersCount }} />
                         </p>
                     </Card>
                 ))}

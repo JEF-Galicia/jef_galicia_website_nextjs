@@ -26,13 +26,17 @@ export default function ProjectIndexPage({ projects }: { projects: admin_directo
 
     return (
         <BoxComponent>
-            <h1 className='text-3xl font-semibold'><FormattedMessage defaultMessage="Proxectos"/></h1>
-            <p className='mt-4'><FormattedMessage defaultMessage="Aquí tes unha lista de todos os proxectos que temos en marcha. Se queres saber máis sobre algún deles, só tes que facer click no seu nome."/></p>
+            <h1 className='text-3xl font-semibold'><FormattedMessage defaultMessage="Proxectos" /></h1>
+            <p className='mt-4'><FormattedMessage defaultMessage="Aquí tes unha lista de todos os proxectos que temos en marcha. Se queres saber máis sobre algún deles, só tes que facer click no seu nome." /></p>
             <ul className='mt-8'>
                 {projects.map((g) => (
                     <Card key={g.id}>
                         <Link href={'projects/' + g.email}>
                             {g.name}
+                            <p className='text-gray-500 dark:text-gray-400 mt-1'>
+                                {/* Format plural: 1 membro, 2 membros, 3 membros, etc. */}
+                                {g.directMembersCount}
+                            </p>
                         </Link>
                     </Card>
                 ))}
