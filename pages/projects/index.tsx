@@ -3,6 +3,7 @@ import BoxComponent from '../../components/Box';
 import { FormattedMessage } from 'react-intl';
 import { GoogleDirectory } from '../../api/client';
 import { admin_directory_v1 } from 'googleapis';
+import Card from '../../components/Card';
 
 // Get the paths to all the projects
 export async function getStaticProps() {
@@ -26,14 +27,14 @@ export default function ProjectIndexPage({ projects }: { projects: admin_directo
     return (
         <BoxComponent>
             <h1 className='text-3xl font-semibold'><FormattedMessage defaultMessage="Proxectos"/></h1>
-            <p><FormattedMessage defaultMessage="Aquí tes unha lista de todos os proxectos que temos en marcha. Se queres saber máis sobre algún deles, só tes que facer click no seu nome."/></p>
-            <ul>
+            <p className='mt-4'><FormattedMessage defaultMessage="Aquí tes unha lista de todos os proxectos que temos en marcha. Se queres saber máis sobre algún deles, só tes que facer click no seu nome."/></p>
+            <ul className='mt-8'>
                 {projects.map((g) => (
-                    <li key={g.id}>
+                    <Card key={g.id}>
                         <Link href={'projects/' + g.email}>
                             {g.name}
                         </Link>
-                    </li>
+                    </Card>
                 ))}
             </ul>
         </BoxComponent>
