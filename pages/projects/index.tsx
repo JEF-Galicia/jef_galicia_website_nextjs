@@ -35,7 +35,7 @@ export default function ProjectIndexPage({ projects }: { projects: admin_directo
                             {g.name}
                             <p className='text-gray-500 dark:text-gray-400 mt-1'>
                                 {/* Format plural: 1 membro, 2 membros, 3 membros, etc. */}
-                                {g.directMembersCount}
+                                <FormattedMessage defaultMessage="{count, plural, one {# membro} other {# membros}}" values={{ count: g.directMembersCount }} />
                             </p>
                         </Link>
                     </Card>
