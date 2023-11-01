@@ -12,6 +12,7 @@ import { GoogleDirectory } from '../../../api/client';
 import MemberCard from '../../../components/MemberCard';
 import BoxComponent from '../../../components/Box';
 import Card from '../../../components/Card';
+import { Map, Marker } from "pigeon-maps";
 
 type IndexProps = {
     //users: UserObjectResponse[];
@@ -19,6 +20,7 @@ type IndexProps = {
     photos: admin_directory_v1.Schema$UserPhoto[];
     groups: admin_directory_v1.Schema$Groups;
     memberships: { [x: string]: admin_directory_v1.Schema$Members };
+    places: { [x: string]: { places: { location: { latitude: number, longitude: number } }[] } };
 };
 
 export async function getStaticProps() {
@@ -76,15 +78,49 @@ export async function getStaticProps() {
                 , {});
         }
         );
-        return { props: { users, photos, groups, memberships }, revalidate: 3600 }; // revalidate every hour
+
+        const places = await Promise.all(users.map(u => u.addresses?.find(a => a.type === 'work')?.formatted)
+            .filter(a => a)
+            .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
+            .map(async (address) => {
+                // Get the coordinates of the address
+                const addressInformation = await fetch('https://places.googleapis.com/v1/places:searchText', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Goog-Api-Key': process.env.GOOGLE_MAPS_API_KEY,
+                        'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.location',
+                    },
+                    body: JSON.stringify({
+                        textQuery: address,
+                        languageCode: 'en',
+                    }),
+                }).then((res) => {
+                    return (res.json());
+                });
+
+                return ({
+                    [address]: addressInformation,
+                });
+
+            })).then((res) => {
+                return res.reduce((acc, place) => {
+                    return { ...acc, ...place }; // Merge all the objects into one
+                }
+                    , {});
+            }
+            );
+
+        return { props: { users, photos, groups, memberships, places }, revalidate: 3600 }; // revalidate every hour
     } catch (e) {
-        return { props: { users: [], photos: [], groups: [], memberships: [] } };
+        console.error(e);
+        return { props: { users: [], photos: [], groups: [], memberships: [], places: [] } };
     }
 }
 
-export default function Index({ users, photos, memberships, groups }: IndexProps) {
+export default function Index({ users, photos, memberships, groups, places }: IndexProps) {
     const intl = useIntl();
-    
+
     const usersWithAddressesOrdered = useMemo(() => {
         return users.map((u) => {
             const tagline = (u.addresses as [{ type: string, formatted: string }])?.find(a => a.type === 'work')?.formatted;
@@ -106,6 +142,28 @@ export default function Index({ users, photos, memberships, groups }: IndexProps
             />
             <h1 className='text-3xl font-semibold'><FormattedMessage defaultMessage="Mapa de membros" /></h1>
             <p className='mt-4'><FormattedMessage defaultMessage="Aquí tes un mapa coas direccións dos membros de JEF Galicia que teñen proporcionado unha. Se queres saber máis sobre algún deles ou consultar os seus integrantes, só tes que facer click nel." /></p>
+            <div className='mt-8'>
+                <Map height={500} defaultZoom={4} boxClassname='' attribution={false} defaultCenter={[50.0, 5.0]}>
+                    {usersWithAddressesOrdered.map((user) => {
+                        const tagline = (user.addresses as [{ type: string, formatted: string }])?.find(a => a.type === 'work')?.formatted;
+                        return (
+                            <Marker key={user.id} width={50} anchor={[places[tagline]?.places[0].location?.latitude, places[tagline]?.places[0].location?.longitude]} >
+                                <svg width={40} height={50} viewBox="0 0 61 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g style={{ pointerEvents: 'auto' }}>
+                                        <path
+                                            d="M52 31.5C52 36.8395 49.18 42.314 45.0107 47.6094C40.8672 52.872 35.619 57.678 31.1763 61.6922C30.7916 62.0398 30.2084 62.0398 29.8237 61.6922C25.381 57.678 20.1328 52.872 15.9893 47.6094C11.82 42.314 9 36.8395 9 31.5C9 18.5709 18.6801 9 30.5 9C42.3199 9 52 18.5709 52 31.5Z"
+                                            fill={"var(--color-primary)"}
+                                            stroke="white"
+                                            strokeWidth="4"
+                                        />
+                                        <circle cx="30.5" cy="30.5" r="8.5" fill="white" opacity={0.6} />
+                                    </g>
+                                </svg>
+                            </Marker>
+                        )
+                    })}
+                </Map>
+            </div>
             <ul className="w-full mt-8">
                 {usersWithAddressesOrdered.map((user) => {
                     const tagline = (user.addresses as [{ type: string, formatted: string }])?.find(a => a.type === 'work')?.formatted;
@@ -115,7 +173,8 @@ export default function Index({ users, photos, memberships, groups }: IndexProps
                                 {user.name.fullName}
                             </h2>
                             <p className='text-gray-500 dark:text-gray-400 mt-1'>
-                                {tagline}</p>
+                                {tagline}
+                            </p>
                         </Card>
                     )
                 })}
