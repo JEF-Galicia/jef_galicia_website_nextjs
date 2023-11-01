@@ -1,4 +1,11 @@
-export default function ButtonComponent(props) {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children?: JSX.Element | JSX.Element[] | string;
+  className?: string;
+  onClick?: () => void;
+}
+
+
+export default function ButtonComponent(props: ButtonProps) {
   return (
     <button
       className={

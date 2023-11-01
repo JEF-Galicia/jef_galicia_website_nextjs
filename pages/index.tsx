@@ -69,15 +69,21 @@ export default function Index({ posts, globalData }: IndexProps) {
             <FormattedMessage defaultMessage="Coñécenos" />
           </h2>
           <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center gap-8 flex-wrap">
-            <ButtonComponent href="/about" className="">
+            <Link href="/about">
+            <ButtonComponent className="">
               <FormattedMessage defaultMessage="Quen somos?" />
             </ButtonComponent>
-            <ButtonComponent href='/about/federation' className="">
+            </Link>
+            <Link href="/about/federation">
+            <ButtonComponent className="">
               <FormattedMessage defaultMessage="Sobre JEF" />
             </ButtonComponent>
-            <ButtonComponent href="/join" className="">
+            </Link>
+            <Link href="/join">
+            <ButtonComponent className="">
               <FormattedMessage defaultMessage="Inscríbete!" id="sign-up" />
             </ButtonComponent>
+            </Link>
           </div>
         </div>
         <div aria-label='blog-posts' className="w-full py-12">

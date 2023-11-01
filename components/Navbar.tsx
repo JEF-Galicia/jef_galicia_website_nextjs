@@ -155,12 +155,12 @@ export default function Navbar({teams, projects}: {teams: admin_directory_v1.Sch
             onClick={() => toggleDropdown('events')}
           >
             <ButtonComponent className="w-full">
-              <span className="mr-1">
+              <span className="mr-1 align-baseline">
                 <FormattedMessage defaultMessage="Eventos" />
               </span>
               <FontAwesomeIcon
                 icon={faArrowDown}
-                className="h-5 w-5 align-bottom"
+                className="h-4 w-4 align-middle"
               />
             </ButtonComponent>
             <div
