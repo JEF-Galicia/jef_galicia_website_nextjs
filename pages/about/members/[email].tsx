@@ -145,18 +145,6 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
                     </BoxComponent>
                 )
                 }
-                {locale === 'en' && user.customSchemas?.['Website']?.['Introduction [EN]'] &&
-                    <BoxComponent className="lg:px-6 py-6 lg:py-6 mb-4">
-                        <p className='m-0'>{user.customSchemas['Website']['Introduction [EN]']}
-                        </p>
-                    </BoxComponent>
-                }
-                {locale === 'gl' && user.customSchemas?.['Website']?.['Introduction [GL]'] &&
-                    <BoxComponent className="lg:px-6 py-6 lg:py-6 mb-4">
-                        <p className='m-0'>{user.customSchemas['Website']['Introduction [GL]']}
-                        </p>
-                    </BoxComponent>
-                }
                 {user.primaryEmail && (<div className="flex justify-start w-full mb-6">
                     <a
                         className="w-full md:w-full flex-grow"
