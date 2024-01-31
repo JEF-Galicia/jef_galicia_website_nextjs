@@ -16,10 +16,15 @@ import Image from 'next/image';
 import { FormattedDate, FormattedMessage, useIntl } from 'react-intl';
 import logoJef from '../public/Main_Imagetype_Bounded.svg';
 import ButtonComponent from '../components/Button';
+import BoxComponent from '../components/Box';
+import { GoogleDirectory } from '../api/client';
+import { admin_directory_v1 } from 'googleapis';
 
 type IndexProps = {
   posts: Post[];
   globalData: any;
+  memberOfTheWeek: admin_directory_v1.Schema$User;
+  photoOfMemberOfTheWeek: admin_directory_v1.Schema$UserPhoto;
 };
 
 export async function getStaticProps() {
@@ -36,10 +41,36 @@ export async function getStaticProps() {
 
   const globalData = getGlobalData();
 
-  return { props: { posts, globalData }, revalidate: 360 };
+  const users = await GoogleDirectory.users.list({
+    domain: 'jef.gal',
+    orderBy: 'GIVEN_NAME',
+    showDeleted: 'false',
+  }).then((res) => {
+    return res.data.users;
+  }
+  ).then((users) => )
+  //.then((users) => users.filter(u => (u.thumbnailPhotoUrl) && (u.customSchemas?.['Website']?.['Introduction']))); // filter out users without a photo or without an introduction
+
+  console.log(users);
+
+  // Seed to the number generator: current number of week
+  const seed = Math.ceil(new Date().getTime() / (1000 * 60 * 60 * 24 * 7));
+  // Do the modulo to get a number between 0 and users.length
+  const memberOfTheWeek = users[seed % users.length];
+
+  const photoOfMemberOfTheWeek = await
+    GoogleDirectory.users.photos.get({
+      userKey: memberOfTheWeek.primaryEmail,
+    }).then((res) => {
+      return res.data;
+    }).catch((e) => {
+      return null;
+    });
+
+  return { props: { posts, globalData, memberOfTheWeek, photoOfMemberOfTheWeek }, revalidate: 360 };
 }
 
-export default function Index({ posts, globalData }: IndexProps) {
+export default function Index({ posts, globalData, memberOfTheWeek, photoOfMemberOfTheWeek }: IndexProps) {
   const intl = useIntl();
   return (
     <>
@@ -64,25 +95,43 @@ export default function Index({ posts, globalData }: IndexProps) {
         </p>
       </header>
       <main className="w-full px-8">
+        <BoxComponent>
+          <h2 className='text-2xl lg:text-3xl text-center mb-6'>
+            <FormattedMessage defaultMessage="Membro da semana" />
+          </h2>
+          <h3 className="text-xl lg:text-2xl text-center mb-6">
+            {memberOfTheWeek.name.fullName}
+          </h3>
+
+          <Image
+            src={'data:' + photoOfMemberOfTheWeek.mimeType + ';base64,' + photoOfMemberOfTheWeek.photoData.replace(/_/g, '/').replace(/-/g, '+')}
+            alt="avatar"
+            width={photoOfMemberOfTheWeek.width}
+            height={photoOfMemberOfTheWeek.height}
+            className="rounded inline-block"
+          ></Image>
+
+
+        </BoxComponent>
         <div aria-label='about-us' className="w-full py-12">
           <h2 className="text-2xl lg:text-3xl text-center mb-6">
             <FormattedMessage defaultMessage="Coñécenos" />
           </h2>
           <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center gap-8 flex-wrap">
             <Link href="/about">
-            <ButtonComponent className="">
-              <FormattedMessage defaultMessage="Quen somos?" />
-            </ButtonComponent>
+              <ButtonComponent className="">
+                <FormattedMessage defaultMessage="Quen somos?" />
+              </ButtonComponent>
             </Link>
             <Link href="/about/federation">
-            <ButtonComponent className="">
-              <FormattedMessage defaultMessage="Sobre JEF" />
-            </ButtonComponent>
+              <ButtonComponent className="">
+                <FormattedMessage defaultMessage="Sobre JEF" />
+              </ButtonComponent>
             </Link>
             <Link href="/join">
-            <ButtonComponent className="">
-              <FormattedMessage defaultMessage="Inscríbete!" id="sign-up" />
-            </ButtonComponent>
+              <ButtonComponent className="">
+                <FormattedMessage defaultMessage="Inscríbete!" id="sign-up" />
+              </ButtonComponent>
             </Link>
           </div>
         </div>
