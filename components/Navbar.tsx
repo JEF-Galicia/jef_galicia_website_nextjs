@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ButtonComponent from './Button';
 import { FormattedMessage } from 'react-intl';
 import { admin_directory_v1 } from 'googleapis';
+import { useTheme } from '../lib/hooks';
+import { ROUTES } from '../lib/constants';
 
 export default function Navbar({teams, projects}: {teams: admin_directory_v1.Schema$Groups, projects: admin_directory_v1.Schema$Groups}) {
   const [isOpen, setIsOpen] = useState(false);
@@ -275,7 +277,7 @@ export default function Navbar({teams, projects}: {teams: admin_directory_v1.Sch
             className="block lg:relative mt-4 lg:inline-block lg:mt-0"
           >
             <ButtonComponent className="w-full">
-              <FormattedMessage defaultMessage="Inscribirme" />
+              <FormattedMessage defaultMessage="Inscríbete!" />
             </ButtonComponent>
           </Link>
         </div>

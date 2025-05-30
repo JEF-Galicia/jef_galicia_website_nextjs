@@ -6,6 +6,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Link from 'next/link';
 import logoJef from '../public/Main_Imagetype_Bounded.svg';
 import Image from 'next/image';
+import { SOCIAL_LINKS } from '../lib/constants';
 
 export default function Subscribe() {
   // 1. Create a reference to the input so we can fetch/clear it's value.
@@ -140,16 +141,24 @@ export default function Subscribe() {
           {message ? (
             message
           ) : (
-            <p className="font-semibold">
-              <FormattedMessage
-                defaultMessage="Forma parte da próxima xeración de europeístas!"
-                id="become-part-of-the-new-gen-of-europeanists"
-              />
-            </p>
+            <div>
+              <p className="font-semibold mb-3">
+                <FormattedMessage
+                  defaultMessage="Forma parte da próxima xeración de europeístas!"
+                  id="become-part-of-the-new-gen-of-europeanists"
+                />
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <FormattedMessage
+                  defaultMessage="A inscrición realízase a través do formulario centralizado de JEF España, xa que todas as seccións rexionais forman parte da federación nacional."
+                />
+              </p>
+            </div>
           )}
           <a
-            href="https://forms.gle/LbS1HdFnRErEPCrY7"
-            type="submit"
+            href={SOCIAL_LINKS.jefSpainSignup}
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full"
           >
             <ButtonComponent className="w-full">
