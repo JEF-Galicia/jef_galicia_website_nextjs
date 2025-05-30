@@ -32,9 +32,9 @@ type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps;
 
 const getVariantClasses = (variant: ButtonVariant): string => {
   const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 border-transparent',
+    primary: 'bg-primary text-white hover:bg-primary/90 focus:ring-primary border-transparent',
     secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500 border-transparent',
-    outline: 'bg-transparent text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 focus:ring-blue-500 border-blue-600',
+    outline: 'bg-transparent text-primary hover:bg-primary/10 dark:hover:bg-primary/20 focus:ring-primary border-primary',
     ghost: 'bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-gray-500 border-transparent',
   };
   return variants[variant];

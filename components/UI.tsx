@@ -1,5 +1,11 @@
 /**
- * UI components for loading states, errors, and empty states
+ * UI compone  return (
+    <div className="flex justify-center items-center">
+      <div
+        className={`animate-spin rounded-full border-2 border-gray-300 border-t-primary ${sizeClasses[size]}`}
+      />
+    </div>
+  ); loading states, errors, and empty states
  */
 import { Button } from './Button';
 
@@ -184,10 +190,10 @@ export function Alert({ type, title, message, onClose, className }: AlertProps) 
       message: 'text-red-700 dark:text-red-300',
     },
     info: {
-      container: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
-      icon: 'text-blue-400',
-      title: 'text-blue-800 dark:text-blue-400',
-      message: 'text-blue-700 dark:text-blue-300',
+      container: 'bg-primary/10 dark:bg-primary/20 border-primary/20 dark:border-primary/30',
+      icon: 'text-primary',
+      title: 'text-primary dark:text-primary',
+      message: 'text-primary/80 dark:text-primary/90',
     },
   };
 

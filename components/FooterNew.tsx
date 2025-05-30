@@ -11,7 +11,7 @@ interface FooterLinkProps {
 }
 
 function FooterLink({ href, children, external = false }: FooterLinkProps) {
-  const className = "text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors";
+  const className = "text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors";
   
   if (external) {
     return (

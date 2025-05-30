@@ -129,7 +129,7 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
                             }
                             {teams.length > 0 && (
                                 teams.map(team =>
-                                    <li key={team.id}><Link href={'/about/teams/' + team.email} className='underline text-blue-800 dark:text-blue-200 opacity-85 hover:opacity-100 transition' >
+                                    <li key={team.id}><Link href={'/about/teams/' + team.email} className='underline text-primary dark:text-primary opacity-85 hover:opacity-100 transition' >
                                         {team.name} Manager
                                     </Link>
                                     </li>
