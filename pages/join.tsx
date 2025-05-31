@@ -150,12 +150,8 @@ export default function Subscribe() {
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                 <FormattedMessage
-                  defaultMessage="Utilizamos un proceso de rexistro centralizado a través de JEF España. Cando te rexistres, recibiremos a túa información e poñeremonos en contacto contigo para explicarte os seguintes pasos para unirte a JEF Galicia."
-                />
-              </p>
-              <p className="text-xs text-gray-500 dark:text-gray-500 mb-4">
-                <FormattedMessage
-                  defaultMessage="Todas as seccións rexionais de JEF forman parte da federación nacional española."
+                  defaultMessage="A inscrición realízase a través do formulario centralizado de JEF España, xa que todas as seccións rexionais forman parte da federación nacional."
+                  id="centralized-signup-explanation"
                 />
               </p>
             </div>

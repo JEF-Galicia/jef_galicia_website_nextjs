@@ -34,6 +34,6 @@ export const GoogleDirectory = new admin_directory_v1.Admin({
       client_email: GCP_CLIENT_EMAIL,
       private_key: GCP_PRIVATE_KEY,
     },
-    scopes: [...API_CONFIG.google.scopes],
+    scopes: API_CONFIG.google.scopes,
   }),
 });

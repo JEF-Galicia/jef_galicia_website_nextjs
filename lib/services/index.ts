@@ -3,7 +3,7 @@
  */
 
 import { APP_CONFIG, API_CONFIG } from '../constants';
-import type { Member, Group, Post } from '../types';
+import type { Member, Team, Project, BlogPost } from '../types';
 
 class APIService {
   private baseUrl: string;
@@ -43,30 +43,30 @@ class APIService {
   }
 
   // Team operations
-  async getTeams(): Promise<Group[]> {
-    return this.request<Group[]>('/api/teams');
+  async getTeams(): Promise<Team[]> {
+    return this.request<Team[]>('/api/teams');
   }
 
-  async getTeam(email: string): Promise<Group> {
-    return this.request<Group>(`/api/teams/${encodeURIComponent(email)}`);
+  async getTeam(email: string): Promise<Team> {
+    return this.request<Team>(`/api/teams/${encodeURIComponent(email)}`);
   }
 
   // Project operations
-  async getProjects(): Promise<Group[]> {
-    return this.request<Group[]>('/api/projects');
+  async getProjects(): Promise<Project[]> {
+    return this.request<Project[]>('/api/projects');
   }
 
-  async getProject(id: string): Promise<Group> {
-    return this.request<Group>(`/api/projects/${id}`);
+  async getProject(id: string): Promise<Project> {
+    return this.request<Project>(`/api/projects/${id}`);
   }
 
   // Blog operations
-  async getBlogPosts(): Promise<Post[]> {
-    return this.request<Post[]>('/api/blog');
+  async getBlogPosts(): Promise<BlogPost[]> {
+    return this.request<BlogPost[]>('/api/blog');
   }
 
-  async getBlogPost(id: string): Promise<Post> {
-    return this.request<Post>(`/api/blog/${id}`);
+  async getBlogPost(id: string): Promise<BlogPost> {
+    return this.request<BlogPost>(`/api/blog/${id}`);
   }
 
   // Newsletter subscription
@@ -159,9 +159,9 @@ class DataService {
     }
   }
 
-  async getTeams(): Promise<Group[]> {
+  async getTeams(): Promise<Team[]> {
     const cacheKey = 'teams';
-    const cached = this.getCache<Group[]>(cacheKey);
+    const cached = this.getCache<Team[]>(cacheKey);
     
     if (cached) {
       return cached;
@@ -177,9 +177,9 @@ class DataService {
     }
   }
 
-  async getProjects(): Promise<Group[]> {
+  async getProjects(): Promise<Project[]> {
     const cacheKey = 'projects';
-    const cached = this.getCache<Group[]>(cacheKey);
+    const cached = this.getCache<Project[]>(cacheKey);
     
     if (cached) {
       return cached;
@@ -195,9 +195,9 @@ class DataService {
     }
   }
 
-  async getBlogPosts(): Promise<Post[]> {
+  async getBlogPosts(): Promise<BlogPost[]> {
     const cacheKey = 'blog-posts';
-    const cached = this.getCache<Post[]>(cacheKey);
+    const cached = this.getCache<BlogPost[]>(cacheKey);
     
     if (cached) {
       return cached;

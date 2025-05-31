@@ -1,8 +1,11 @@
 /**
  * Main layout component with improved structure and TypeScript
  */
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect } from 'react';
 import classNames from 'classnames';
+import { useTheme } from '../lib/hooks';
+import { Navbar } from './Navbar';
+import { Footer } from './Footer';
 import styles from './Layout.module.css';
 
 interface GradientBackgroundProps {
@@ -35,23 +38,24 @@ export default function Layout({
   showGradient = false, 
   gradientVariant = 'large' 
 }: LayoutProps) {
-  const [mounted, setMounted] = useState(false);
+  const { mounted } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Prevent hydration mismatch by not rendering until component is mounted
+  // Prevent hydration mismatch by not rendering until theme is mounted
   if (!mounted) {
     return null;
   }
 
   return (
-    <div className="relative pb-24 overflow-hidden">
+    <div className="min-h-screen flex flex-col">
       {showGradient && <GradientBackground variant={gradientVariant} />}
-      <div className="flex flex-col items-center max-w-2xl w-full mx-auto">
+      
+      <Navbar />
+      
+      <main className="flex-1">
         {children}
-      </div>
+      </main>
+      
+      <Footer />
     </div>
   );
 }
