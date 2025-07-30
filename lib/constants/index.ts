@@ -45,7 +45,7 @@ export const SOCIAL_LINKS = {
   linkedin: 'https://www.linkedin.com/company/jef-galicia/',
   jefSpain: 'https://jefspain.org',
   jefSections: 'https://www.jefspain.org/secciones',
-  jefSpainSignup: 'https://forms.jefspain.org/alta',
+  jefSpainSignup: 'https://forms.gle/8VXCRqTEPjJvppyi9',
 } as const;
 
 // Theme configuration
