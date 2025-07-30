@@ -7,26 +7,6 @@ import { themeUtils } from '../utils';
 import type { Locale, Theme } from '../types';
 
 /**
- * Custom hook for theme management
- */
-export function useTheme() {
-  const [theme, setThemeState] = useState<Theme>('system');
-
-  useEffect(() => {
-    const currentTheme = themeUtils.getTheme() as Theme;
-    setThemeState(currentTheme);
-    themeUtils.initializeTheme();
-  }, []);
-
-  const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-    themeUtils.setTheme(newTheme);
-  };
-
-  return { theme, setTheme };
-}
-
-/**
  * Custom hook for locale management
  */
 export function useLocale() {
