@@ -3,7 +3,7 @@
  */
 
 import { APP_CONFIG, API_CONFIG } from '../constants';
-import type { Member, Team, Project, BlogPost } from '../types';
+import type { Member, Group, Post } from '../types';
 
 class APIService {
   private baseUrl: string;
@@ -43,30 +43,30 @@ class APIService {
   }
 
   // Team operations
-  async getTeams(): Promise<Team[]> {
-    return this.request<Team[]>('/api/teams');
+  async getTeams(): Promise<Group[]> {
+    return this.request<Group[]>('/api/teams');
   }
 
-  async getTeam(email: string): Promise<Team> {
-    return this.request<Team>(`/api/teams/${encodeURIComponent(email)}`);
+  async getTeam(email: string): Promise<Group> {
+    return this.request<Group>(`/api/teams/${encodeURIComponent(email)}`);
   }
 
   // Project operations
-  async getProjects(): Promise<Project[]> {
-    return this.request<Project[]>('/api/projects');
+  async getProjects(): Promise<Group[]> {
+    return this.request<Group[]>('/api/projects');
   }
 
-  async getProject(id: string): Promise<Project> {
-    return this.request<Project>(`/api/projects/${id}`);
+  async getProject(id: string): Promise<Group> {
+    return this.request<Group>(`/api/projects/${id}`);
   }
 
   // Blog operations
-  async getBlogPosts(): Promise<BlogPost[]> {
-    return this.request<BlogPost[]>('/api/blog');
+  async getBlogPosts(): Promise<Post[]> {
+    return this.request<Post[]>('/api/blog');
   }
 
-  async getBlogPost(id: string): Promise<BlogPost> {
-    return this.request<BlogPost>(`/api/blog/${id}`);
+  async getBlogPost(id: string): Promise<Post> {
+    return this.request<Post>(`/api/blog/${id}`);
   }
 
   // Newsletter subscription
@@ -159,9 +159,9 @@ class DataService {
     }
   }
 
-  async getTeams(): Promise<Team[]> {
+  async getTeams(): Promise<Group[]> {
     const cacheKey = 'teams';
-    const cached = this.getCache<Team[]>(cacheKey);
+    const cached = this.getCache<Group[]>(cacheKey);
     
     if (cached) {
       return cached;
@@ -173,13 +173,13 @@ class DataService {
       return teams;
     } catch (error) {
       console.error('Failed to fetch teams:', error);
-      throw error;
+      return [];
     }
   }
 
-  async getProjects(): Promise<Project[]> {
+  async getProjects(): Promise<Group[]> {
     const cacheKey = 'projects';
-    const cached = this.getCache<Project[]>(cacheKey);
+    const cached = this.getCache<Group[]>(cacheKey);
     
     if (cached) {
       return cached;
@@ -191,13 +191,13 @@ class DataService {
       return projects;
     } catch (error) {
       console.error('Failed to fetch projects:', error);
-      throw error;
+      return [];
     }
   }
 
-  async getBlogPosts(): Promise<BlogPost[]> {
+  async getBlogPosts(): Promise<Post[]> {
     const cacheKey = 'blog-posts';
-    const cached = this.getCache<BlogPost[]>(cacheKey);
+    const cached = this.getCache<Post[]>(cacheKey);
     
     if (cached) {
       return cached;
