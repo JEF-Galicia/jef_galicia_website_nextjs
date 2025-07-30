@@ -4,8 +4,6 @@
 import { ReactNode, useEffect } from 'react';
 import classNames from 'classnames';
 import { useTheme } from '../lib/hooks';
-import { Navbar } from './Navbar';
-import { Footer } from './Footer';
 import styles from './Layout.module.css';
 
 interface GradientBackgroundProps {
@@ -49,13 +47,9 @@ export default function Layout({
     <div className="min-h-screen flex flex-col">
       {showGradient && <GradientBackground variant={gradientVariant} />}
       
-      <Navbar />
-      
       <main className="flex-1">
         {children}
       </main>
-      
-      <Footer />
     </div>
   );
 }
