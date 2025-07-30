@@ -133,13 +133,21 @@ export function EmptyState({
         </p>
       </div>
       {action && (
-        <Button
-          href={action.href}
-          onClick={action.onClick}
-          variant="primary"
-        >
-          {action.label}
-        </Button>
+        action.href ? (
+          <Button
+            href={action.href}
+            variant="primary"
+          >
+            {action.label}
+          </Button>
+        ) : (
+          <Button
+            onClick={action.onClick}
+            variant="primary"
+          >
+            {action.label}
+          </Button>
+        )
       )}
     </div>
   );
