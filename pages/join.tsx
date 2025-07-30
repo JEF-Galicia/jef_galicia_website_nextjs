@@ -150,8 +150,8 @@ export default function Subscribe() {
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                 <FormattedMessage
-                  defaultMessage="A inscrición realízase a través do formulario centralizado de JEF España, xa que todas as seccións rexionais forman parte da federación nacional."
-                  id="centralized-signup-explanation"
+                  defaultMessage="Só tardarás 2 minutos!"
+                  id="quick-signup-time"
                 />
               </p>
             </div>
