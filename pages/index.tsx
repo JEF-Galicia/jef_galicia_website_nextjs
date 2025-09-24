@@ -1,51 +1,29 @@
 import Link from 'next/link';
-import { getPosts } from '../utils/mdx-utils';
-
-import Footer from '../components/Footer';
-import Layout, { GradientBackground } from '../components/Layout';
-import ArrowIcon from '../components/ArrowIcon';
 import { getGlobalData } from '../utils/global-data';
-
-import { parseProperties, Post } from '../api/parse-properties';
-import { queryDatabase } from '../api/query-database';
-import { any } from 'cypress/types/bluebird';
 import { NextSeo } from 'next-seo';
 import imgTransparenteLogo from '../public/Main_Isotype.png';
 import imgRecruitmentSquare from '../public/Promo_Recruitment_Square.png';
 import Image from 'next/image';
-import { FormattedDate, FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import logoJef from '../public/Main_Imagetype_Bounded.svg';
 import ButtonComponent from '../components/Button';
 
 import imgPaper1 from '../public/Paper_1.png';
 import imgPaper2 from '../public/Paper_2.png';
 import imgPaper3 from '../public/Paper_3.png';
-import Card from '../components/Card';
 import BoxComponent from '../components/Box';
 
 type IndexProps = {
-  posts: Post[];
   globalData: any;
 };
 
 export async function getStaticProps() {
-  var posts = [];
-  try {
-    const database = await queryDatabase();
-    posts = parseProperties(database).filter((post) => !post.archived);
-  } catch (e) {
-    console.error(e);
-  }
-
-  // temporal fix - empty the posts array
-  //posts = [];
-
+  // Posts have been removed; only provide global data now.
   const globalData = getGlobalData();
-
-  return { props: { posts, globalData }, revalidate: 360 };
+  return { props: { globalData }, revalidate: 360 };
 }
 
-export default function Index({ posts, globalData }: IndexProps) {
+export default function Index({ globalData }: IndexProps) {
   const intl = useIntl();
   return (
     <>
@@ -121,36 +99,30 @@ export default function Index({ posts, globalData }: IndexProps) {
           </div>
         </BoxComponent>
 
-        <div aria-label='blog-posts' className="w-full py-12">
+        <div aria-label='news-links' className="w-full py-12">
           <h2 className="text-2xl lg:text-3xl text-center mb-6">
-            <FormattedMessage defaultMessage="Os nosos últimos artigos" />
+            <FormattedMessage defaultMessage="Actualidade e noticias" />
           </h2>
-          <ul className="w-full">
-            {posts.map((post) => (
-              <li
-                key={post.id}
-                className="first:rounded-t-lg last:rounded-b-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b hover:border-b hovered-sibling:border-t-0"
-              >
-                <Link
-                  as={`/blog/${post.id}`}
-                  href={`/blog/[id]`}
-                  className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
-                  {post.date && (
-                    <p className="uppercase mb-3 font-bold opacity-60">
-                      <FormattedDate value={new Date(post.date)} />
-                    </p>
-                  )}
-                  <h2 className="text-2xl md:text-3xl">{post.title}</h2>
-                  {post.description && (
-                    <p className="mt-3 text-lg opacity-60">
-                      {post.description}
-                    </p>
-                  )}
-                  <ArrowIcon className="mt-4" />
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <p className="text-lg lg:text-xl text-center text-balance">
+            <FormattedMessage defaultMessage="Consulta o que di a federación e os nosos socios sobre a actualidade aquí:" />
+          </p>
+          <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center gap-4 mt-6">
+            <a href="https://www.jefspain.org/actualidad" target="_blank" rel="noopener noreferrer">
+              <ButtonComponent className="">
+                <FormattedMessage defaultMessage="JEF España: Actualidad" />
+              </ButtonComponent>
+            </a>
+            <a href="https://jef.eu/about-jef/news/" target="_blank" rel="noopener noreferrer">
+              <ButtonComponent className="">
+                <FormattedMessage defaultMessage="JEF Europe: News" />
+              </ButtonComponent>
+            </a>
+            <a href="https://www.thenewfederalist.eu/" target="_blank" rel="noopener noreferrer">
+              <ButtonComponent className="">
+                <FormattedMessage defaultMessage="The New Federalist" />
+              </ButtonComponent>
+            </a>
+          </div>
         </div>
       </main>
     </>
