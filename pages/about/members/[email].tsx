@@ -156,18 +156,6 @@ export default function MemberPage({ user, groups, photo, projects, teams, proje
                     </a>
                 </div>)}
                 <dl className='mb-8'>
-                    {user.addresses?.filter(a => !(
-                        // The same address is repeated as 'work'
-                        a.type === 'home' && user.addresses.find(a2 => a2.type === 'work' && a2.formatted === a.formatted)
-                    )).map((address) =>
-                        <div key={address.type}>
-                            <dt className='font-semibold float-left mr-4'>
-                                {/* If address.type is "work", then "Ubicación principal", else "Ubicación" */}
-                                <FormattedMessage defaultMessage="{address_type, select, work {Ubicación principal} other {Ubicación}}" values={{ address_type: address.type }} />
-                                </dt>
-                            <dd>{address.formatted}</dd>
-                        </div>
-                    )}
                     <dt className='font-semibold float-left mr-4'><FormattedMessage defaultMessage="Data de unión" /></dt>
                     <dd><FormattedDate value={user.creationTime} /></dd>
                     <dt className='font-semibold float-left mr-4'><FormattedMessage defaultMessage="Linguas de uso" /></dt>
