@@ -33,10 +33,6 @@ export default function ProjectIndexPage({ projects }: { projects: admin_directo
                     <Card key={g.id}>
                         <Link href={'projects/' + g.email}>
                             {g.name}
-                            <p className='text-gray-500 dark:text-gray-400 mt-1'>
-                                {/* Format plural: 1 membro, 2 membros, 3 membros, etc. */}
-                                <FormattedMessage defaultMessage="{count, plural, one {# membro} other {# membros}}" values={{ count: g.directMembersCount }} />
-                            </p>
                         </Link>
                     </Card>
                 ))}

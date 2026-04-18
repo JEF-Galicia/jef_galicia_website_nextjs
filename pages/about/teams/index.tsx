@@ -49,21 +49,13 @@ export default function ProjectIndexPage({ teams, memberships }: { teams: admin_
     return (
         <BoxComponent>
             <h1 className='text-3xl font-semibold'><FormattedMessage defaultMessage="Equipos" /></h1>
-            <p className='mt-4'><FormattedMessage defaultMessage="Aquí tes unha lista de todos os equipos de traballo de JEF Galicia. Se queres saber máis sobre algún deles ou consultar os seus integrantes, só tes que facer click no seu nome." /></p>
+            <p className='mt-4'><FormattedMessage defaultMessage="Este é un listado de equipos que teñen xestionado diferentes iniciativas en JEF Galicia." /></p>
             <ul className='mt-8'>
                 {teams.map((g) => (
                     <Card key={g.id} href={'teams/' + g.email}>
                         <h2>
                             {g.name}
                         </h2>
-                        {/* Show the number of members in each team */}
-                        <p className='text-gray-500 dark:text-gray-400 mt-1'>
-                            {/* Format plural: 1 membro, 2 membros, 3 membros, etc. */}
-                            {/*
-                            <FormattedMessage defaultMessage="{count, plural, one {# membro} other {# membros}}" values={{ count: memberships[g.id]?.members?.length ?? 0 }} />
-                            */}
-                            <FormattedMessage defaultMessage="{count, plural, one {# membro} other {# membros}}" values={{ count: g.directMembersCount }} />
-                        </p>
                     </Card>
                 ))}
             </ul>
